@@ -1,16 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from "./screens/HomeScreen";
 import ReportScreen from "./screens/ReportScreen";
 import ScheduleScreen from "./screens/ScheduleScreen";
 import StatsScreen from "./screens/StatsScreen";
+import { Ionicons } from '@expo/vector-icons';
+import Constants from "expo-constants";
 
-import { BottomNavigation } from 'react-native-material-ui';
-import {Icon} from "react-native-material-ui";
-
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
     return (<Main/>);
@@ -26,36 +25,38 @@ export class Main extends React.Component{
         return (
             <View style={styles.container}>
                 <NavigationContainer>
-                    <Stack.Navigator>
-                        <Stack.Screen name="Home" component={HomeScreen} />
-                    </Stack.Navigator>
+                    <Tab.Navigator
+                        screenOptions={({ route }) => ({
+                            tabBarIcon: ({ focused, color, size }) => {
+                                let iconName;
+
+                                if (route.name === 'Home') {
+                                    iconName = focused
+                                        ? 'ios-home'
+                                        : 'ios-home';
+                                } else if (route.name === 'Schedule') {
+                                    iconName = focused ? 'ios-calendar' : 'ios-calendar';
+                                } else if (route.name === 'Report') {
+                                    iconName = focused ? 'ios-checkbox' : 'ios-checkbox';
+                                } else if (route.name === 'Stats') {
+                                    iconName = focused ? 'ios-stats' : 'ios-stats';
+                                }
+
+                                // You can return any component that you like here!
+                                return <Ionicons name={iconName} size={size} color={color} />;
+                            },
+                        })}
+                        tabBarOptions={{
+                            activeTintColor: '#0001ff', //'#39ff00',
+                            inactiveTintColor: 'gray',
+                        }}
+                    >
+                        <Tab.Screen name="Home" component={HomeScreen} />
+                        <Tab.Screen name="Schedule" component={ScheduleScreen} />
+                        <Tab.Screen name="Report" component={ReportScreen} />
+                        <Tab.Screen name="Stats" component={StatsScreen} />
+                    </Tab.Navigator>
                 </NavigationContainer>
-              <BottomNavigation active={this.state.active} hidden={false} style={styles.bottomNav} >
-                  <BottomNavigation.Action
-                      key="home"
-                      icon="home"
-                      label="Home"
-                      onPress={() => this.setState({ active: 'home' })}
-                  />
-                  <BottomNavigation.Action
-                      key="today"
-                      icon="today"
-                      label="Schedule"
-                      onPress={() => this.setState({ active: 'today' })}
-                  />
-                  <BottomNavigation.Action
-                      key="assignment-turned-in"
-                      icon="assignment-turned-in"
-                      label="Report"
-                      onPress={() => this.setState({ active: 'assignment-turned-in' })}
-                  />
-                  <BottomNavigation.Action
-                      key="equalizer"
-                      icon="equalizer"
-                      label="Stats"
-                      onPress={() => this.setState({ active: 'equalizer' })}
-                  />
-              </BottomNavigation>
             </View>
 
       );
@@ -66,8 +67,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: Constants.statusBarHeight,
   },
-    bottomNav: {
-      bottom: 0,
-    },
 });

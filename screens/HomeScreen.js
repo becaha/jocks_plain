@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Image,
+  Button,
   Platform,
   ScrollView,
   StyleSheet,
@@ -10,8 +10,7 @@ import {
 } from 'react-native';
 
 
-
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   return (
     <View>
       <Text>Home</Text>

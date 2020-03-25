@@ -48,7 +48,7 @@ export default function ScheduleScreen() {
   });
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView>
         <View>
             {gameCards}
         </View>

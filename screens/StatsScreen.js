@@ -1,9 +1,10 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { Text, ScrollView, StyleSheet } from 'react-native';
 
 export default function StatsScreen() {
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView>
+      <Text>Stats</Text>
     </ScrollView>
   );
 }
