@@ -8,12 +8,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Header from "../components/Header";
 
 
 export default function HomeScreen({ navigation }) {
   return (
     <View>
-      <Text>Home</Text>
+      <Header title="Home"/>
     </View>
   );
 }

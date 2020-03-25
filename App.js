@@ -8,6 +8,7 @@ import ScheduleScreen from "./screens/ScheduleScreen";
 import StatsScreen from "./screens/StatsScreen";
 import { Ionicons } from '@expo/vector-icons';
 import Constants from "expo-constants";
+import { Toolbar } from "react-native-material-ui";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,12 +17,11 @@ export default function App() {
 }
 
 export class Main extends React.Component{
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {active: 'home'};
     }
 
-  render() {
+    render() {
         return (
             <View style={styles.container}>
                 <NavigationContainer>
@@ -31,9 +31,7 @@ export class Main extends React.Component{
                                 let iconName;
 
                                 if (route.name === 'Home') {
-                                    iconName = focused
-                                        ? 'ios-home'
-                                        : 'ios-home';
+                                    iconName = focused ? 'ios-home' : 'ios-home';
                                 } else if (route.name === 'Schedule') {
                                     iconName = focused ? 'ios-calendar' : 'ios-calendar';
                                 } else if (route.name === 'Report') {
@@ -58,15 +56,25 @@ export class Main extends React.Component{
                     </Tab.Navigator>
                 </NavigationContainer>
             </View>
-
       );
-  }
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: Constants.statusBarHeight,
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        paddingTop: Constants.statusBarHeight,
+    },
+    header: {
+        backgroundColor: '#0001ff',
+        height: 56,
+        justifyContent: 'center'
+    },
+    title: {
+        color: '#fff',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 20
+    }
 });

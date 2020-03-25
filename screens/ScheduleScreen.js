@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import Header from "../components/Header";
 
 const games = [
     {
@@ -49,6 +50,7 @@ export default function ScheduleScreen() {
 
   return (
     <ScrollView>
+        <Header title="Game Schedule"/>
         <View>
             {gameCards}
         </View>
