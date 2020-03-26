@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { TouchableHighlight, View, Text, ScrollView, StyleSheet } from 'react-native';
 import Header from "../components/Header";
 import {SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import { Card } from 'react-native-material-ui';
@@ -51,79 +51,81 @@ export default function ScheduleScreen() {
         return (<Ionicons name="ios-square" size={25} color={color} />);
     }
 
-    let hiddenBodies = [];
+    let showBodies = [];
 
     function toggleDrop(gameIndex) {
-        if (gameIndex in hiddenBodies) {
+        console.log("toggle");
+        if (gameIndex in showBodies) {
             // take out
-            hiddenBodies = hiddenBodies.filter(i !== gameIndex);
+            showBodies = showBodies.filter(i !== gameIndex);
         }
         else {
-            hiddenBodies.push(gameIndex);
+            showBodies.push(gameIndex);
         }
+        console.log(showBodies);
     }
 
     function getBody(game, gameIndex) {
-        if (gameIndex in hiddenBodies) {
-            return null;
+        if (gameIndex in showBodies) {
+            return (<View style={styles.cardBody}>
+                <View style={[styles.row, styles.rowOuter]}>
+                    <View style={styles.colEven}>
+                        <Text style={[styles.heading]}>
+                            Departure
+                        </Text>
+                        <Text style={styles.paddedL4}>
+                            {game.departure}
+                        </Text>
+                    </View>
+                    <View style={styles.colEven}>
+                        <Text style={[styles.heading]}>
+                            Arrival
+                        </Text>
+                        <Text style={styles.paddedL4}>
+                            {game.arrival}
+                        </Text>
+                    </View>
+                </View>
+                <View style={[styles.rowCol, styles.rowOuter]}>
+                    <Text style={[styles.heading]}>
+                        Location
+                    </Text>
+                    <Text style={styles.paddedL4}>
+                        {game.address}
+                    </Text>
+                </View>
+                <View style={styles.rowCol}>
+                    <Text style={[styles.heading]}>
+                        Colors
+                    </Text>
+                    <View style={[styles.row, styles.paddedL4]}>
+                        {getColorIcon(game.colors.jersey)}
+                        <Text style={styles.paddedL}>
+                            Jersey
+                        </Text>
+                    </View>
+                    <View style={[styles.row, styles.paddedL4]}>
+                        {getColorIcon(game.colors.skirt)}
+                        <Text style={styles.paddedL}>
+                            Skirt
+                        </Text>
+                    </View>
+                    <View style={[styles.row, styles.paddedL4]}>
+                        {getColorIcon(game.colors.socks)}
+                        <Text style={styles.paddedL}>
+                            Socks
+                        </Text>
+                    </View>
+                </View>
+            </View>);
         }
-        return (<View style={styles.cardBody}>
-            <View style={[styles.row, styles.rowOuter]}>
-                <View style={styles.colEven}>
-                    <Text style={[styles.heading]}>
-                        Departure
-                    </Text>
-                    <Text style={styles.paddedL4}>
-                        {game.departure}
-                    </Text>
-                </View>
-                <View style={styles.colEven}>
-                    <Text style={[styles.heading]}>
-                        Arrival
-                    </Text>
-                    <Text style={styles.paddedL4}>
-                        {game.arrival}
-                    </Text>
-                </View>
-            </View>
-            <View style={[styles.rowCol, styles.rowOuter]}>
-                <Text style={[styles.heading]}>
-                    Location
-                </Text>
-                <Text style={styles.paddedL4}>
-                    {game.address}
-                </Text>
-            </View>
-            <View style={styles.rowCol}>
-                <Text style={[styles.heading]}>
-                    Colors
-                </Text>
-                <View style={[styles.row, styles.paddedL4]}>
-                    {getColorIcon(game.colors.jersey)}
-                    <Text style={styles.paddedL}>
-                        Jersey
-                    </Text>
-                </View>
-                <View style={[styles.row, styles.paddedL4]}>
-                    {getColorIcon(game.colors.skirt)}
-                    <Text style={styles.paddedL}>
-                        Skirt
-                    </Text>
-                </View>
-                <View style={[styles.row, styles.paddedL4]}>
-                    {getColorIcon(game.colors.socks)}
-                    <Text style={styles.paddedL}>
-                        Socks
-                    </Text>
-                </View>
-            </View>
-        </View>);
+        return null;
     }
 
   const gameCards = games.map((game, index) => {
     return (
         <View key={index} style={styles.card}>
-            <View>
+            <View onPress={toggleDrop(index)}>
                 <View style={[styles.row, styles.rowOuter, styles.rowHeaderHead]}>
                     <Text>
                         {game.date}
@@ -132,7 +134,7 @@ export default function ScheduleScreen() {
                         <Text>
                             {game.score}
                         </Text>
-                        <View style={styles.boundingBox}  onPress={() => {toggleDrop(index)}}>
+                        <View style={styles.boundingBox}>
                             <Ionicons name="ios-arrow-down" size={20} color="#000" />
                         </View>
                     </View>
