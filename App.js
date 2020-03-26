@@ -9,6 +9,9 @@ import StatsScreen from "./screens/StatsScreen";
 import { Ionicons } from '@expo/vector-icons';
 import Constants from "expo-constants";
 import { Toolbar } from "react-native-material-ui";
+import {BACKGROUND} from "./assets/styles/COLORS";
+import {blue50} from "react-native-material-ui/src/styles/colors";
+import {SCROLL_SCREEN_HEIGHT} from "./assets/styles/NUMBERS";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +27,7 @@ export class Main extends React.Component{
     render() {
         return (
             <View style={styles.container}>
-                <NavigationContainer>
+                <NavigationContainer styles={styles.screen}>
                     <Tab.Navigator
                         screenOptions={({ route }) => ({
                             tabBarIcon: ({ focused, color, size }) => {
@@ -49,7 +52,7 @@ export class Main extends React.Component{
                             inactiveTintColor: 'gray',
                         }}
                     >
-                        <Tab.Screen name="Home" component={HomeScreen} />
+                        <Tab.Screen name="Home" component={HomeScreen}/>
                         <Tab.Screen name="Schedule" component={ScheduleScreen} />
                         <Tab.Screen name="Report" component={ReportScreen} />
                         <Tab.Screen name="Stats" component={StatsScreen} />
@@ -63,17 +66,5 @@ export class Main extends React.Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-    },
-    header: {
-        backgroundColor: '#0001ff',
-        height: 56,
-        justifyContent: 'center'
-    },
-    title: {
-        color: '#fff',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontSize: 20
     }
 });
