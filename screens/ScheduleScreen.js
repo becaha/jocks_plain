@@ -39,7 +39,23 @@ const games = [
       skirt: '#fff',
       socks: '#00033b'
     }
-  }
+  },
+    {
+        date: 'Sat, Mar 14',
+        opponent: 'University of Michigan',
+        opponentShort: 'UM',
+        score: 'W 12-11',
+        time: '12 pm',
+        departure: '10 am from hotel',
+        arrival: '11 am',
+        field: 'Kittredge Field',
+        address: '2510 Kittredge Loop Dr, Boulder, CO 80305',
+        colors: {
+            jersey: '#fff',
+            skirt: '#fff',
+            socks: '#00033b'
+        }
+    }
 ];
 
 export class ScheduleScreen extends React.Component {
@@ -173,9 +189,11 @@ export class ScheduleScreen extends React.Component {
         return (
           <View>
               <Header title="Game Schedule"/>
-              <ScrollView styles={styles.screen}>
-                  {this.getGameCards()}
-              </ScrollView>
+              <View>
+                  <ScrollView style={styles.screen}>
+                      {this.getGameCards()}
+                  </ScrollView>
+              </View>
           </View>
       );
   }
@@ -188,7 +206,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
     screen: {
-      height: SCROLL_SCREEN_HEIGHT,
+      maxHeight: SCROLL_SCREEN_HEIGHT,
     },
     card: {
         backgroundColor: '#000',
