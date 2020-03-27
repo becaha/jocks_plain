@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from "./screens/HomeScreen";
 import ReportScreen from "./screens/ReportScreen";
-import ScheduleScreen from "./screens/ScheduleScreen";
+import {ScheduleScreen} from "./screens/ScheduleScreen";
 import StatsScreen from "./screens/StatsScreen";
 import { Ionicons } from '@expo/vector-icons';
 import Constants from "expo-constants";

@@ -42,31 +42,35 @@ const games = [
   }
 ];
 
-export default function ScheduleScreen() {
+export class ScheduleScreen extends React.Component {
 
-    function getColorIcon(color) {
-        if(color === '#fff') {
-            return (<Ionicons name="ios-square-outline" size={25} color='#000' />);
-        }
-        return (<Ionicons name="ios-square" size={25} color={color} />);
+    constructor(props) {
+        super(props);
+        this.showBodies = [];
+        this.games = games;
+        this.state = {toggle: true};
     }
 
-    let showBodies = [];
+    getColorIcon(color) {
+        if (color === '#fff') {
+            return (<Ionicons name="ios-square-outline" size={25} color='#000'/>);
+        }
+        return (<Ionicons name="ios-square" size={25} color={color}/>);
+    }
 
-    function toggleDrop(gameIndex) {
-        console.log("toggle");
-        if (gameIndex in showBodies) {
+    toggleDrop(event, gameIndex) {
+        console.log("toggle", gameIndex);
+        if (this.showBodies.includes(gameIndex)) {
             // take out
-            showBodies = showBodies.filter(i !== gameIndex);
+            this.showBodies = this.showBodies.filter(i => i !== gameIndex);
+        } else {
+            this.showBodies.push(gameIndex);
         }
-        else {
-            showBodies.push(gameIndex);
-        }
-        console.log(showBodies);
+        this.setState({toggle: true});
     }
 
-    function getBody(game, gameIndex) {
-        if (gameIndex in showBodies) {
+    getBody(game, gameIndex) {
+        if (this.showBodies.includes(gameIndex)) {
             return (<View style={styles.cardBody}>
                 <View style={[styles.row, styles.rowOuter]}>
                     <View style={styles.colEven}>
@@ -99,19 +103,19 @@ export default function ScheduleScreen() {
                         Colors
                     </Text>
                     <View style={[styles.row, styles.paddedL4]}>
-                        {getColorIcon(game.colors.jersey)}
+                        {this.getColorIcon(game.colors.jersey)}
                         <Text style={styles.paddedL}>
                             Jersey
                         </Text>
                     </View>
                     <View style={[styles.row, styles.paddedL4]}>
-                        {getColorIcon(game.colors.skirt)}
+                        {this.getColorIcon(game.colors.skirt)}
                         <Text style={styles.paddedL}>
                             Skirt
                         </Text>
                     </View>
                     <View style={[styles.row, styles.paddedL4]}>
-                        {getColorIcon(game.colors.socks)}
+                        {this.getColorIcon(game.colors.socks)}
                         <Text style={styles.paddedL}>
                             Socks
                         </Text>
@@ -122,54 +126,59 @@ export default function ScheduleScreen() {
         return null;
     }
 
-  const gameCards = games.map((game, index) => {
-    return (
-        <View key={index} style={styles.card}>
-            <View onPress={toggleDrop(index)}>
-                <View style={[styles.row, styles.rowOuter, styles.rowHeaderHead]}>
-                    <Text>
-                        {game.date}
-                    </Text>
-                    <View style={[styles.row, styles.rowOuter]}>
-                        <Text>
-                            {game.score}
-                        </Text>
-                        <View style={styles.boundingBox}>
-                            <Ionicons name="ios-arrow-down" size={20} color="#000" />
+    getGameCards() {
+        let gameCards = this.games.map((game, index) => {
+            return (
+                <View key={index} style={styles.card}>
+                    <View onStartShouldSetResponder={(event) => this.toggleDrop(event, index)}>
+                        <View style={[styles.row, styles.rowOuter, styles.rowHeaderHead]}>
+                            <Text>
+                                {game.date}
+                            </Text>
+                            <View style={[styles.row, styles.rowOuter]}>
+                                <Text>
+                                    {game.score}
+                                </Text>
+                                <View style={styles.boundingBox}>
+                                    <Ionicons name="ios-arrow-down" size={20} color="#000"/>
+                                </View>
+                            </View>
+                        </View>
+                        <View style={[styles.row, styles.rowOuter, styles.rowHeaderBody]}>
+                            <View style={styles.col0}>
+                                <Text>
+                                    {game.time}
+                                </Text>
+                            </View>
+                            <View style={styles.col1}>
+                                <Text>
+                                    {game.opponent}
+                                </Text>
+                            </View>
+                            <View style={styles.col2}>
+                                <Text>
+                                    {game.field}
+                                </Text>
+                            </View>
                         </View>
                     </View>
+                    {this.getBody(game, index)}
                 </View>
-                <View style={[styles.row, styles.rowOuter, styles.rowHeaderBody]}>
-                    <View style={styles.col0}>
-                        <Text>
-                            {game.time}
-                        </Text>
-                    </View>
-                    <View style={styles.col1}>
-                        <Text>
-                            {game.opponent}
-                        </Text>
-                    </View>
-                    <View style={styles.col2}>
-                        <Text>
-                            {game.field}
-                        </Text>
-                    </View>
-                </View>
-            </View>
-            {getBody(game, index)}
-        </View>
-    )
-  });
+            )
+        });
+        return gameCards;
+    }
 
-  return (
-    <View>
-        <Header title="Game Schedule"/>
-        <ScrollView styles={styles.screen}>
-            {gameCards}
-        </ScrollView>
-    </View>
-  );
+  render() {
+        return (
+          <View>
+              <Header title="Game Schedule"/>
+              <ScrollView styles={styles.screen}>
+                  {this.getGameCards()}
+              </ScrollView>
+          </View>
+      );
+  }
 }
 
 const styles = StyleSheet.create({
