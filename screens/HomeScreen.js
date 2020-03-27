@@ -12,15 +12,17 @@ import Header from "../components/Header";
 import {BACKGROUND} from "../assets/styles/COLORS";
 
 
-export default function HomeScreen({ navigation }) {
-  return (
-    <View>
-      <Header title="Home"/>
-      <View styles={styles.container}>
-          <Text>HELLO</Text>
-      </View>
-    </View>
-  );
+export class HomeScreen extends React.Component {
+  render() {
+      return (
+            <View>
+                <Header title="Home"/>
+                <View styles={styles.container}>
+                    <Text>HELLO</Text>
+                </View>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({

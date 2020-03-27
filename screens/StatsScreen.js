@@ -2,13 +2,15 @@ import React from 'react';
 import { Text, ScrollView, StyleSheet } from 'react-native';
 import Header from '../components/Header'
 
-export default function StatsScreen() {
-  return (
-    <ScrollView>
-      <Header title="Stats"/>
-      <Text>Stats</Text>
-    </ScrollView>
-  );
+export class StatsScreen extends React.Component {
+  render() {
+        return (
+            <ScrollView>
+                <Header title="Stats"/>
+                <Text>Stats</Text>
+            </ScrollView>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
