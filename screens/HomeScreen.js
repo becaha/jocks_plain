@@ -1,9 +1,19 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View,} from 'react-native';
-import Header from "../components/Header";
-import {ACCENT_COLOR, BACKGROUND, DARK_NEUTRAL, MEDIUM_NEUTRAL} from "../assets/styles/COLORS";
-import {SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
+import {Image, StyleSheet, Text, View} from 'react-native';
+import PropTypes from 'prop-types';
+import {
+    ACCENT_COLOR,
+    BACKGROUND,
+    MAIN_COLOR_BACKGROUND,
+    LIGHT_NEUTRAL,
+    MAIN_COLOR,
+    MEDIUM_NEUTRAL
+} from "../assets/styles/COLORS";
+import {HEADER_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import Logo from "../assets/y_logo_filled.png";
+import Constants from "expo-constants";
+import { Button } from 'react-native-material-ui';
+
 
 const announcements = ['Practice Cancelled March 30', 'Regionals at USU April 17-18', 'Team Banquet March 30'];
 const currentWeek = {
@@ -26,7 +36,7 @@ export class HomeScreen extends React.Component {
         getAnnouncements() {
             return this.announcements.map((ann, index) => {
                 return (
-                    <Text key={index} style={[styles.homeUnderHeading, styles.paddedV8, styles.paddedL8]}>
+                    <Text key={index} style={[styles.homeUnderHeading, styles.paddedV8, styles.paddedL16]}>
                         {ann}
                     </Text>
                 );
@@ -36,23 +46,30 @@ export class HomeScreen extends React.Component {
     getWeekTasks() {
         return this.currentWeek.tasks.map((task, index) => {
             return (
-                <Text key={index} style={[styles.homeUnderHeading, styles.paddedV8, styles.paddedL8]}>
+                <Text key={index} style={[styles.homeUnderHeading, styles.paddedV8, styles.paddedL16]}>
                     {task.task}
                 </Text>
             );
         });
     }
 
+    onReport() {
+
+    }
+
       render() {
           return (
                 <View>
-                    <Header title="Home"/>
+                    <View>
+                        <View style={styles.statusBar}>
+                        </View>
+                        <View style={styles.header}>
+                        </View>
+                    </View>
                     <View style={styles.container}>
                         <View style={styles.headingMain}>
-                            <Text style={styles.title}>{this.teamName}</Text>
-                        </View>
-                        <View style={styles.headingMain}>
                             <Image source={Logo} style={{width: 140, height: 90}}/>
+                            <Text style={styles.title}>{this.teamName}</Text>
                         </View>
                         <View style={styles.cardBody}>
                             <View style={[styles.rowCol, styles.rowOuter]}>
@@ -64,9 +81,14 @@ export class HomeScreen extends React.Component {
                         </View>
                         <View style={[styles.cardBody, styles.cardBodySecond]}>
                             <View style={[styles.rowCol]}>
-                                <Text style={[styles.heading, styles.homeHeading, styles.paddedV4]}>
-                                    This Week's Tasks
-                                </Text>
+                                <View style={[styles.row, styles.rowEnd]}>
+                                    <Text style={[styles.heading, styles.homeHeading, styles.paddedV4]}>
+                                        This Week's Tasks
+                                    </Text>
+                                    {/*<View style={styles.lightButton} onStartShouldSetResponder={() => this.onReport()}>*/}
+                                    {/*    <Text style={styles.lightButtonText}>Report</Text>*/}
+                                    {/*</View>*/}
+                                </View>
                                 {this.getWeekTasks()}
                             </View>
                         </View>
@@ -78,34 +100,33 @@ export class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: BACKGROUND,
+    backgroundColor: MAIN_COLOR,
+      height: SCROLL_SCREEN_HEIGHT
   },
     screen: {
         maxHeight: SCROLL_SCREEN_HEIGHT,
     },
-    card: {
-        backgroundColor: '#000',
-        // marginLeft: 4
+    statusBar: {
+        backgroundColor: '#fff',
+        height: Constants.statusBarHeight,
+    },
+    header: {
+        backgroundColor: '#fff',
+        height: HEADER_HEIGHT,
+        justifyContent: 'center'
     },
     row: {
         flexDirection: 'row',
         alignItems: 'center',
     },
-    rowOuter: {
-        padding: 8,
-    },
-    rowHeaderHead: {
-        backgroundColor: MEDIUM_NEUTRAL,
-        padding: 0,
-        paddingLeft: 12,
-        paddingRight: 12,
+    rowEnd: {
+        // padding: 0,
+        // paddingLeft: 12,
+        // paddingRight: 12,
         justifyContent: 'space-between'
     },
-    rowHeaderBody: {
-        backgroundColor: DARK_NEUTRAL,
-        padding: 14,
-        paddingLeft: 8,
-        paddingRight: 8,
+    rowOuter: {
+        padding: 8,
     },
     rowCol: {
         flexDirection: 'column',
@@ -126,15 +147,18 @@ const styles = StyleSheet.create({
         paddingRight: 8
     },
     cardBody: {
-        backgroundColor: BACKGROUND,
         padding: 16,
-        paddingBottom: 4
+        paddingBottom: 4,
+        backgroundColor: MAIN_COLOR
     },
     cardBodySecond: {
         paddingTop: 4,
     },
     boundingBox: {
         paddingLeft: 24
+    },
+    paddedL16: {
+        paddingLeft: 16
     },
     paddedL8: {
         paddingLeft: 8
@@ -153,20 +177,34 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     homeHeading: {
-        fontSize: 25
+        fontSize: 25,
+        color: '#fff'
     },
     homeUnderHeading: {
-        fontSize: 20
+        fontSize: 20,
+        color: '#fff'
     },
     title: {
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: ACCENT_COLOR,
+        color: MAIN_COLOR,
+        paddingTop: 24
     },
     headingMain: {
-        padding: 24,
-        backgroundColor: BACKGROUND,
-        alignItems: 'center'
+        paddingBottom: 12,
+        alignItems: 'center',
+        backgroundColor: '#fff'
+    },
+    lightButton: {
+        backgroundColor: '#fff'
+    },
+    lightButtonText: {
+        color: MAIN_COLOR,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        padding: 8,
+        paddingLeft: 12,
+        paddingRight: 12
     }
 });

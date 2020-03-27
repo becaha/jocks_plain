@@ -7,11 +7,6 @@ import {ReportScreen} from "./screens/ReportScreen";
 import {ScheduleScreen} from "./screens/ScheduleScreen";
 import {StatsScreen} from "./screens/StatsScreen";
 import { Ionicons } from '@expo/vector-icons';
-import Constants from "expo-constants";
-import { Toolbar } from "react-native-material-ui";
-import {BACKGROUND} from "./assets/styles/COLORS";
-import {blue50} from "react-native-material-ui/src/styles/colors";
-import {SCROLL_SCREEN_HEIGHT} from "./assets/styles/NUMBERS";
 
 const Tab = createBottomTabNavigator();
 
