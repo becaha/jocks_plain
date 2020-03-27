@@ -5,13 +5,57 @@ import {Ionicons} from "@expo/vector-icons";
 import {SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import {ACCENT_COLOR, BACKGROUND, DARK_NEUTRAL, MEDIUM_NEUTRAL} from "../assets/styles/COLORS";
 
-const reportWeeks = [{
-    date: 'Mar 23 - Mar 28',
-    allChecked: false,
-    tasks: [
-        {task:'1000 touches', checked: false},
-        {task: '3 miles', checked: false}]
-}];
+const reportWeeks = [
+    {
+        date: 'Mar 23 - Mar 28',
+        allChecked: false,
+        tasks: [
+            {task:'1000 Touches', checked: false},
+            {task: '3 Miles', checked: false}]
+    },
+    {
+        date: 'Mar 30 - Apr 4',
+        allChecked: false,
+        tasks: [
+            {task:'750 Touches', checked: false},
+            {task: '3 Miles', checked: false}]
+    },
+    {
+        date: 'Apr 6 - Apr 11',
+        allChecked: false,
+        tasks: [
+            {task:'1500 Touches', checked: false},
+            {task: '2 Miles', checked: false}]
+    },
+    {
+        date: 'Apr 13 - Apr 18',
+        allChecked: false,
+        tasks: [
+            {task:'500 Touches', checked: false},
+            {task: '1 Mile', checked: false}]
+    },
+    {
+        date: 'Apr 20 - Apr 25',
+        allChecked: false,
+        tasks: [
+            {task:'1500 Touches', checked: false},
+            {task: '2 Miles', checked: false}]
+    },
+    {
+        date: 'Apr 27 - May 2',
+        allChecked: false,
+        tasks: [
+            {task:'1000 Touches', checked: false},
+            {task: '3 Miles', checked: false}]
+    },
+    {
+        date: 'May 4 - May 9',
+        allChecked: false,
+        tasks: [
+            {task:'500 Touches', checked: false},
+            {task: '1 Mile', checked: false}]
+    },
+];
 
 export class ReportScreen extends React.Component {
     constructor(props) {

@@ -27,7 +27,7 @@ export class Main extends React.Component{
     render() {
         return (
             <View style={styles.container}>
-                <NavigationContainer styles={styles.screen}>
+                <NavigationContainer style={styles.screen}>
                     <Tab.Navigator
                         screenOptions={({ route }) => ({
                             tabBarIcon: ({ focused, color, size }) => {
