@@ -3,11 +3,14 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Header from "../components/Header";
 import {Ionicons} from "@expo/vector-icons";
 import {SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
-import {BACKGROUND, DARK_NEUTRAL, MEDIUM_NEUTRAL} from "../assets/styles/COLORS";
+import {ACCENT_COLOR, BACKGROUND, DARK_NEUTRAL, MEDIUM_NEUTRAL} from "../assets/styles/COLORS";
 
 const reportWeeks = [{
     date: 'Mar 23 - Mar 28',
-    tasks: ['1000 touches', '3 miles']
+    allChecked: false,
+    tasks: [
+        {task:'1000 touches', checked: false},
+        {task: '3 miles', checked: false}]
 }];
 
 export class ReportScreen extends React.Component {
@@ -15,7 +18,7 @@ export class ReportScreen extends React.Component {
         super(props);
         this.reportWeeks = reportWeeks;
         this.showReports = [];
-        this.state = {toggle: false};
+        this.state = {refresh: false};
     }
 
     toggleDrop(event, weekIndex) {
@@ -26,15 +29,30 @@ export class ReportScreen extends React.Component {
         } else {
             this.showReports.push(weekIndex);
         }
-        this.setState({toggle: true});
+        this.setState({refresh: true});
+    }
+
+    toggleCheck(event, week, task) {
+        task.checked ? task.checked = false : task.checked = true;
+        let uncheckedTasks = week.tasks.filter((task)=> task.checked === false);
+        uncheckedTasks.length === 0 ? week.allChecked = true : week.allChecked = false;
+        this.setState({refresh: true});
+    }
+
+    getCheckbox(task) {
+        if (!task.checked) {
+            return (<Ionicons name="ios-square-outline" size={35} color='#000'/>);
+        }
+        return (<Ionicons name="ios-square" size={35} color={ACCENT_COLOR}/>);
     }
 
     getBody(week, weekIndex) {
         let tasks = week.tasks.map((task, index) => {
             return (
-                <View key={index} style={[styles.row, styles.paddedL4]}>
-                    <Text style={styles.paddedL}>
-                        {task}
+                <View key={index} style={[styles.row, styles.paddedL4]} onStartShouldSetResponder={(event) => this.toggleCheck(event, week, task)}>
+                    {this.getCheckbox(task)}
+                    <Text style={[styles.paddedV, styles.paddedL16]}>
+                        {task.task}
                     </Text>
                 </View>
             );
@@ -52,12 +70,18 @@ export class ReportScreen extends React.Component {
         return null;
     }
 
+    getWeekStyles(week) {
+        let weekStyles = [styles.row, styles.rowOuter, styles.rowHeaderHead];
+        week.allChecked ? weekStyles.push(styles.allChecked) : null;
+        return weekStyles;
+    }
+
     getReportCards() {
         let reportCards = this.reportWeeks.map((week, index) => {
             return (
                 <View key={index} style={styles.card}>
                     <View onStartShouldSetResponder={(event) => this.toggleDrop(event, index)}>
-                        <View style={[styles.row, styles.rowOuter, styles.rowHeaderHead]}>
+                        <View style={this.getWeekStyles(week)}>
                             <Text>
                                 {week.date}
                             </Text>
@@ -125,7 +149,9 @@ const styles = StyleSheet.create({
     rowCol: {
         flexDirection: 'column',
         justifyContent: 'center',
-        padding: 8,
+    },
+    padded8: {
+        padding: 8
     },
     colEven: {
         width: 180
@@ -147,7 +173,13 @@ const styles = StyleSheet.create({
     boundingBox: {
         paddingLeft: 24
     },
-    paddedL: {
+    paddedL16: {
+        paddingLeft: 16
+    },
+    paddedL12: {
+        paddingLeft: 12
+    },
+    paddedL8: {
         paddingLeft: 8
     },
     paddedL4: {
@@ -157,4 +189,12 @@ const styles = StyleSheet.create({
         paddingBottom: 4,
         fontWeight: 'bold'
     },
+    paddedV: {
+        padding: 4,
+        paddingLeft: 0,
+        paddingRight: 0
+    },
+    allChecked: {
+        backgroundColor: DARK_NEUTRAL
+    }
 });
