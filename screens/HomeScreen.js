@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, Image, StyleSheet, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 import {
     ACCENT_COLOR,
@@ -9,7 +9,7 @@ import {
     MAIN_COLOR,
     MEDIUM_NEUTRAL
 } from "../assets/styles/COLORS";
-import {HEADER_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
+import {HEADER_HEIGHT, SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import Logo from "../assets/y_logo_filled.png";
 import Constants from "expo-constants";
 import { Button } from 'react-native-material-ui';
@@ -66,33 +66,35 @@ export class HomeScreen extends React.Component {
                         <View style={styles.header}>
                         </View>
                     </View>
-                    <View style={styles.container}>
+                    <ScrollView style={styles.screen}>
                         <View style={styles.headingMain}>
                             <Image source={Logo} style={{width: 140, height: 90}}/>
                             <Text style={styles.title}>{this.teamName}</Text>
                         </View>
-                        <View style={styles.cardBody}>
-                            <View style={[styles.rowCol, styles.rowOuter]}>
-                                <Text style={[styles.heading, styles.homeHeading, styles.paddedV4]}>
-                                    Announcements
-                                </Text>
-                                {this.getAnnouncements()}
-                            </View>
-                        </View>
-                        <View style={[styles.cardBody, styles.cardBodySecond]}>
-                            <View style={[styles.rowCol]}>
-                                <View style={[styles.row, styles.rowEnd]}>
+                        <View style={styles.cardContainer}>
+                            <View style={styles.cardBody}>
+                                <View style={[styles.rowCol, styles.rowOuter]}>
                                     <Text style={[styles.heading, styles.homeHeading, styles.paddedV4]}>
-                                        This Week's Tasks
+                                        Announcements
                                     </Text>
-                                    {/*<View style={styles.lightButton} onStartShouldSetResponder={() => this.onReport()}>*/}
-                                    {/*    <Text style={styles.lightButtonText}>Report</Text>*/}
-                                    {/*</View>*/}
+                                    {this.getAnnouncements()}
                                 </View>
-                                {this.getWeekTasks()}
+                            </View>
+                            <View style={[styles.cardBody, styles.cardBodySecond]}>
+                                <View style={[styles.rowCol]}>
+                                    <View style={[styles.row, styles.rowEnd]}>
+                                        <Text style={[styles.heading, styles.homeHeading, styles.paddedV4]}>
+                                            This Week's Tasks
+                                        </Text>
+                                        {/*<View style={styles.lightButton} onStartShouldSetResponder={() => this.onReport()}>*/}
+                                        {/*    <Text style={styles.lightButtonText}>Report</Text>*/}
+                                        {/*</View>*/}
+                                    </View>
+                                    {this.getWeekTasks()}
+                                </View>
                             </View>
                         </View>
-                    </View>
+                    </ScrollView>
                 </View>
             );
         }
@@ -104,7 +106,9 @@ const styles = StyleSheet.create({
       height: SCROLL_SCREEN_HEIGHT
   },
     screen: {
+        height: SCROLL_SCREEN_HEIGHT,
         maxHeight: SCROLL_SCREEN_HEIGHT,
+        backgroundColor: BACKGROUND
     },
     statusBar: {
         backgroundColor: '#fff',
@@ -146,10 +150,14 @@ const styles = StyleSheet.create({
     col2: {
         paddingRight: 8
     },
+    cardContainer: {
+      height: SCREEN_HEIGHT,
+        backgroundColor: MAIN_COLOR
+    },
     cardBody: {
         padding: 16,
         paddingBottom: 4,
-        backgroundColor: MAIN_COLOR
+        // backgroundColor: MAIN_COLOR
     },
     cardBodySecond: {
         paddingTop: 4,

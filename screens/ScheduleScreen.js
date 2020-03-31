@@ -90,6 +90,22 @@ const games = [
     },
     {
         date: 'Sat, Apr 4',
+        opponent: 'Boise State University',
+        opponentShort: 'BSU',
+        score: '',
+        time: '10 am',
+        departure: '9 am from IPF',
+        arrival: '11 am',
+        field: 'UVU Geneva Fields',
+        address: 'Utah Valley University Geneva Fields, W 40 S, Vineyard, UT 84058',
+        colors: {
+            jersey: '#fff',
+            skirt: '#fff',
+            socks: '#00033b'
+        }
+    },
+    {
+        date: 'Sat, Apr 4',
         opponent: 'UVU',
         opponentShort: 'UVU',
         score: '',
@@ -98,6 +114,54 @@ const games = [
         arrival: '12 pm',
         field: 'UVU Geneva Fields',
         address: 'Utah Valley University Geneva Fields, W 40 S, Vineyard, UT 84058',
+        colors: {
+            jersey: '#fff',
+            skirt: '#fff',
+            socks: '#00033b'
+        }
+    },
+    {
+        date: 'Fri, Apr 17',
+        opponent: 'TBD',
+        opponentShort: 'R',
+        score: '',
+        time: 'TBD',
+        departure: 'TBD',
+        arrival: 'TBD',
+        field: 'Aggie Legacy Fields',
+        address: 'USU Legacy Fields, Utah State University, Logan, UT 84321',
+        colors: {
+            jersey: '#fff',
+            skirt: '#fff',
+            socks: '#00033b'
+        }
+    },
+    {
+        date: 'Sat, Apr 18',
+        opponent: 'TBD',
+        opponentShort: 'R',
+        score: '',
+        time: 'TBD',
+        departure: 'TBD',
+        arrival: 'TBD',
+        field: 'Aggie Legacy Fields',
+        address: 'USU Legacy Fields, Utah State University, Logan, UT 84321',
+        colors: {
+            jersey: '#fff',
+            skirt: '#fff',
+            socks: '#00033b'
+        }
+    },
+    {
+        date: 'Wed, May 6',
+        opponent: 'TBD',
+        opponentShort: 'N',
+        score: '',
+        time: 'TBD',
+        departure: 'TBD',
+        arrival: 'TBD',
+        field: 'Round Rock Complex',
+        address: 'Round Rock, Texas',
         colors: {
             jersey: '#fff',
             skirt: '#fff',
