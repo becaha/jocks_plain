@@ -7,7 +7,7 @@ import {ReportScreen} from "./screens/ReportScreen";
 import {ScheduleScreen} from "./screens/ScheduleScreen";
 import {StatsScreen} from "./screens/StatsScreen";
 import { Ionicons } from '@expo/vector-icons';
-import {ACCENT_COLOR} from "./assets/styles/COLORS";
+import {ACCENT_COLOR, LIGHT_NEUTRAL, LIGHTER_COLOR, MAIN_COLOR} from "./assets/styles/COLORS";
 
 const Tab = createBottomTabNavigator();
 
@@ -46,6 +46,11 @@ export class Main extends React.Component{
                         tabBarOptions={{
                             activeTintColor: ACCENT_COLOR, //'#39ff00',
                             inactiveTintColor: 'gray',
+                            style: {
+                                backgroundColor: '#fff',
+                                borderTopColor: MAIN_COLOR,
+                                borderTopWidth: 1
+                            }
                         }}
                     >
                         <Tab.Screen name="Home" component={HomeScreen}/>
