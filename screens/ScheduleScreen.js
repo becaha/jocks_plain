@@ -3,8 +3,16 @@ import { TouchableHighlight, View, Text, ScrollView, StyleSheet } from 'react-na
 import Header from "../components/Header";
 import {SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import { Card } from 'react-native-material-ui';
-import {BACKGROUND, LIGHT_NEUTRAL, DARK_NEUTRAL, MEDIUM_NEUTRAL} from "../assets/styles/COLORS";
+import {
+    BACKGROUND,
+    LIGHT_NEUTRAL,
+    DARK_NEUTRAL,
+    MEDIUM_NEUTRAL,
+    MEDIUM_COLOR,
+    LIGHT_COLOR, LIGHTER_COLOR, MAIN_COLOR
+} from "../assets/styles/COLORS";
 import {Ionicons} from "@expo/vector-icons";
+import {TouchableWithoutFeedback} from "react-native-web";
 
 
 const games = [
@@ -187,7 +195,7 @@ export class ScheduleScreen extends React.Component {
     }
 
     toggleDrop(event, gameIndex) {
-        console.log("toggle", gameIndex);
+        console.log("toggle");
         if (this.showBodies.includes(gameIndex)) {
             // take out
             this.showBodies = this.showBodies.filter(i => i !== gameIndex);
@@ -195,6 +203,7 @@ export class ScheduleScreen extends React.Component {
             this.showBodies.push(gameIndex);
         }
         this.setState({toggle: true});
+        console.log("end toggle")
     }
 
     getBody(game, gameIndex) {
@@ -232,19 +241,19 @@ export class ScheduleScreen extends React.Component {
                     </Text>
                     <View style={[styles.row, styles.paddedL4]}>
                         {this.getColorIcon(game.colors.jersey)}
-                        <Text style={styles.paddedL}>
+                        <Text style={styles.paddedL8}>
                             Jersey
                         </Text>
                     </View>
                     <View style={[styles.row, styles.paddedL4]}>
                         {this.getColorIcon(game.colors.skirt)}
-                        <Text style={styles.paddedL}>
+                        <Text style={styles.paddedL8}>
                             Skirt
                         </Text>
                     </View>
                     <View style={[styles.row, styles.paddedL4]}>
                         {this.getColorIcon(game.colors.socks)}
-                        <Text style={styles.paddedL}>
+                        <Text style={styles.paddedL8}>
                             Socks
                         </Text>
                     </View>
@@ -258,43 +267,49 @@ export class ScheduleScreen extends React.Component {
         let gameCards = this.games.map((game, index) => {
             return (
                 <View key={index} style={styles.card}>
-                    <View onStartShouldSetResponder={(event) => this.toggleDrop(event, index)}>
-                        <View style={[styles.row, styles.rowOuter, styles.rowHeaderHead]}>
-                            <Text>
-                                {game.date}
-                            </Text>
-                            <View style={[styles.row, styles.rowOuter]}>
+                    <TouchableWithoutFeedback onPress={(event) => this.toggleDrop(event, index)}>
+                        <View>
+                            <View style={[styles.row, styles.rowOuter, styles.rowHeaderHead]}>
                                 <Text>
-                                    {game.score}
+                                    {game.date}
                                 </Text>
-                                <View style={styles.boundingBox}>
-                                    <Ionicons name="ios-arrow-down" size={20} color="#000"/>
+                                <View style={[styles.row, styles.rowOuter]}>
+                                    <Text>
+                                        {game.score}
+                                    </Text>
+                                    <View style={styles.boundingBox}>
+                                        <Ionicons name="ios-arrow-down" size={20} color="#000"/>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={[styles.row, styles.rowOuter, styles.rowHeaderBody]}>
+                                <View style={styles.col0}>
+                                    <Text>
+                                        {game.time}
+                                    </Text>
+                                </View>
+                                <View style={styles.col1}>
+                                    <Text>
+                                        {game.opponent}
+                                    </Text>
+                                </View>
+                                <View style={styles.col2}>
+                                    <Text>
+                                        {game.field}
+                                    </Text>
                                 </View>
                             </View>
                         </View>
-                        <View style={[styles.row, styles.rowOuter, styles.rowHeaderBody]}>
-                            <View style={styles.col0}>
-                                <Text>
-                                    {game.time}
-                                </Text>
-                            </View>
-                            <View style={styles.col1}>
-                                <Text>
-                                    {game.opponent}
-                                </Text>
-                            </View>
-                            <View style={styles.col2}>
-                                <Text>
-                                    {game.field}
-                                </Text>
-                            </View>
-                        </View>
-                    </View>
+                    </TouchableWithoutFeedback>
                     {this.getBody(game, index)}
                 </View>
             )
         });
         return gameCards;
+    }
+
+    handleScroll(event) {
+        console.log("scroll", event);
     }
 
   render() {
@@ -303,7 +318,9 @@ export class ScheduleScreen extends React.Component {
               <Header title="Game Schedule"/>
               <View>
                   <ScrollView style={styles.screen}>
-                      {this.getGameCards()}
+                      <View style={styles.cardContainer}>
+                        {this.getGameCards()}
+                      </View>
                   </ScrollView>
               </View>
           </View>
@@ -311,7 +328,7 @@ export class ScheduleScreen extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
@@ -320,9 +337,9 @@ const styles = StyleSheet.create({
     screen: {
       maxHeight: SCROLL_SCREEN_HEIGHT,
     },
-    card: {
-        backgroundColor: '#000',
-        // marginLeft: 4
+    cardContainer: {
+        borderBottomWidth: 4,
+        borderBottomColor: MAIN_COLOR
     },
     row: {
         flexDirection: 'row',
@@ -332,17 +349,19 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     rowHeaderHead: {
-        backgroundColor: MEDIUM_NEUTRAL,
+        backgroundColor: LIGHT_COLOR,
         padding: 0,
         paddingLeft: 12,
         paddingRight: 12,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        borderTopWidth: 4,
+        borderTopColor: MAIN_COLOR
     },
     rowHeaderBody: {
-        backgroundColor: DARK_NEUTRAL,
+        backgroundColor: MEDIUM_COLOR,
         padding: 14,
         paddingLeft: 8,
-        paddingRight: 8,
+        paddingRight: 8
     },
     rowCol: {
         flexDirection: 'column',
@@ -363,17 +382,28 @@ const styles = StyleSheet.create({
         paddingRight: 8
     },
     cardBody: {
-        backgroundColor: BACKGROUND,
+        backgroundColor: LIGHTER_COLOR,
         padding: 16,
     },
     boundingBox: {
         paddingLeft: 24
     },
-    paddedL: {
+    paddedL16: {
+        paddingLeft: 16
+    },
+    paddedL12: {
+        paddingLeft: 12
+    },
+    paddedL8: {
       paddingLeft: 8
     },
     paddedL4: {
         paddingLeft: 4
+    },
+    paddedV: {
+        padding: 4,
+        paddingLeft: 0,
+        paddingRight: 0
     },
     heading: {
         paddingBottom: 4,

@@ -7,9 +7,9 @@ import {
     MAIN_COLOR_BACKGROUND,
     LIGHT_NEUTRAL,
     MAIN_COLOR,
-    MEDIUM_NEUTRAL
+    MEDIUM_NEUTRAL, LIGHT_COLOR, DARK_NEUTRAL
 } from "../assets/styles/COLORS";
-import {HEADER_HEIGHT, SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
+import {HEADER_HEIGHT, HEADING_HEIGHT, SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import Logo from "../assets/y_logo_filled.png";
 import Constants from "expo-constants";
 import { Button } from 'react-native-material-ui';
@@ -23,6 +23,7 @@ const currentWeek = {
             {task:'1000 Touches', checked: false},
             {task: '3 Miles', checked: false}]
     };
+const teamSchool = 'BYU';
 const teamName = 'Women\'s Lacrosse';
 
 export class HomeScreen extends React.Component {
@@ -30,6 +31,7 @@ export class HomeScreen extends React.Component {
             super(props);
             this.announcements = announcements;
             this.currentWeek = currentWeek;
+            this.teamSchool = teamSchool;
             this.teamName = teamName;
         }
 
@@ -63,13 +65,14 @@ export class HomeScreen extends React.Component {
                     <View>
                         <View style={styles.statusBar}>
                         </View>
-                        <View style={styles.header}>
-                        </View>
+                        {/*<View style={styles.header}>*/}
+                        {/*</View>*/}
                     </View>
                     <ScrollView style={styles.screen}>
                         <View style={styles.headingMain}>
-                            <Image source={Logo} style={{width: 140, height: 90}}/>
-                            <Text style={styles.title}>{this.teamName}</Text>
+                            {/*<Image source={Logo} style={{width: 140, height: 90}}/>*/}
+                            <Text style={[styles.title, {fontSize: 45}]}>{this.teamSchool}</Text>
+                            <Text style={[styles.title, {fontSize: 35}]}>{this.teamName}</Text>
                         </View>
                         <View style={styles.cardContainer}>
                             <View style={styles.cardBody}>
@@ -86,9 +89,9 @@ export class HomeScreen extends React.Component {
                                         <Text style={[styles.heading, styles.homeHeading, styles.paddedV4]}>
                                             This Week's Tasks
                                         </Text>
-                                        {/*<View style={styles.lightButton} onStartShouldSetResponder={() => this.onReport()}>*/}
+                                        {/*<Touchable style={styles.lightButton} onPress={() => this.onReport()}>*/}
                                         {/*    <Text style={styles.lightButtonText}>Report</Text>*/}
-                                        {/*</View>*/}
+                                        {/*</Touchable>*/}
                                     </View>
                                     {this.getWeekTasks()}
                                 </View>
@@ -106,8 +109,8 @@ const styles = StyleSheet.create({
       height: SCROLL_SCREEN_HEIGHT
   },
     screen: {
-        height: SCROLL_SCREEN_HEIGHT,
-        maxHeight: SCROLL_SCREEN_HEIGHT,
+        height: SCREEN_HEIGHT - Constants.statusBarHeight,
+        maxHeight: SCREEN_HEIGHT - Constants.statusBarHeight,
         backgroundColor: BACKGROUND
     },
     statusBar: {
@@ -151,7 +154,7 @@ const styles = StyleSheet.create({
         paddingRight: 8
     },
     cardContainer: {
-      height: SCREEN_HEIGHT,
+      height: SCREEN_HEIGHT - Constants.statusBarHeight - HEADING_HEIGHT,
         backgroundColor: MAIN_COLOR
     },
     cardBody: {
@@ -193,16 +196,21 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     title: {
-        fontSize: 30,
+        fontSize: 40,
         fontWeight: 'bold',
         textAlign: 'center',
         color: MAIN_COLOR,
-        paddingTop: 24
+        padding: 16,
+        paddingBottom: 8,
+        paddingTop: 4
     },
     headingMain: {
-        paddingBottom: 12,
+        paddingTop: 32,
+        paddingBottom: 16,
         alignItems: 'center',
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        height: HEADING_HEIGHT,
+        flex: 1
     },
     lightButton: {
         backgroundColor: '#fff'

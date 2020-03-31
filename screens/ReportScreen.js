@@ -3,7 +3,17 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Header from "../components/Header";
 import {Ionicons} from "@expo/vector-icons";
 import {SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
-import {ACCENT_COLOR, BACKGROUND, DARK_NEUTRAL, MEDIUM_NEUTRAL} from "../assets/styles/COLORS";
+import {styles} from "./ScheduleScreen";
+
+import {
+    ACCENT_COLOR,
+    BACKGROUND,
+    DARK_NEUTRAL, LIGHT_COLOR,
+    LIGHTER_COLOR,
+    MEDIUM_COLOR,
+    MEDIUM_NEUTRAL
+} from "../assets/styles/COLORS";
+import {TouchableWithoutFeedback} from "react-native-web";
 
 const reportWeeks = [
     {
@@ -66,7 +76,6 @@ export class ReportScreen extends React.Component {
     }
 
     toggleDrop(event, weekIndex) {
-        console.log("toggle", weekIndex);
         if (this.showReports.includes(weekIndex)) {
             // take out
             this.showReports = this.showReports.filter(i => i !== weekIndex);
@@ -85,7 +94,7 @@ export class ReportScreen extends React.Component {
 
     getCheckbox(task) {
         if (!task.checked) {
-            return (<Ionicons name="ios-square-outline" size={35} color='#000'/>);
+            return (<Ionicons name="ios-square-outline" size={35} color={ACCENT_COLOR}/>);
         }
         return (<Ionicons name="ios-square" size={35} color={ACCENT_COLOR}/>);
     }
@@ -93,12 +102,15 @@ export class ReportScreen extends React.Component {
     getBody(week, weekIndex) {
         let tasks = week.tasks.map((task, index) => {
             return (
-                <View key={index} style={[styles.row, styles.paddedL4]} onStartShouldSetResponder={(event) => this.toggleCheck(event, week, task)}>
-                    {this.getCheckbox(task)}
-                    <Text style={[styles.paddedV, styles.paddedL16]}>
-                        {task.task}
-                    </Text>
-                </View>
+                <TouchableWithoutFeedback key={index} style={[styles.row, styles.paddedL4]}
+                                          onPress={(event) => this.toggleCheck(event, week, task)}>
+                    <View style={styles.row}>
+                        {this.getCheckbox(task)}
+                        <Text style={[styles.paddedV, styles.paddedL16]}>
+                            {task.task}
+                        </Text>
+                    </View>
+                </TouchableWithoutFeedback>
             );
         });
 
@@ -115,8 +127,8 @@ export class ReportScreen extends React.Component {
     }
 
     getWeekStyles(week) {
-        let weekStyles = [styles.row, styles.rowOuter, styles.rowHeaderHead];
-        week.allChecked ? weekStyles.push(styles.allChecked) : null;
+        let weekStyles = [styles.row, styles.rowOuter, styles.rowHeaderHead, styles.rowHeaderBody, report_styles.reportCard];
+        week.allChecked ? weekStyles.push(report_styles.allChecked) : null;
         return weekStyles;
     }
 
@@ -124,7 +136,7 @@ export class ReportScreen extends React.Component {
         let reportCards = this.reportWeeks.map((week, index) => {
             return (
                 <View key={index} style={styles.card}>
-                    <View onStartShouldSetResponder={(event) => this.toggleDrop(event, index)}>
+                    <TouchableWithoutFeedback onPress={(event) => this.toggleDrop(event, index)}>
                         <View style={this.getWeekStyles(week)}>
                             <Text>
                                 {week.date}
@@ -135,7 +147,7 @@ export class ReportScreen extends React.Component {
                                 </View>
                             </View>
                         </View>
-                    </View>
+                    </TouchableWithoutFeedback>
                     {this.getBody(week, index)}
                 </View>
             )
@@ -149,7 +161,9 @@ export class ReportScreen extends React.Component {
               <Header title="Report"/>
               <View>
                   <ScrollView style={styles.screen}>
-                      {this.getReportCards()}
+                      <View style={styles.cardContainer}>
+                        {this.getReportCards()}
+                      </View>
                   </ScrollView>
               </View>
           </View>
@@ -157,88 +171,11 @@ export class ReportScreen extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 15,
-        backgroundColor: '#fff',
-    },
-    screen: {
-        maxHeight: SCROLL_SCREEN_HEIGHT,
-    },
-    card: {
-        backgroundColor: '#000',
-        // marginLeft: 4
-    },
-    row: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    rowOuter: {
-        padding: 8,
-    },
-    rowHeaderHead: {
-        backgroundColor: MEDIUM_NEUTRAL,
-        padding: 0,
-        paddingLeft: 12,
-        paddingRight: 12,
-        justifyContent: 'space-between'
-    },
-    rowHeaderBody: {
-        backgroundColor: DARK_NEUTRAL,
-        padding: 14,
-        paddingLeft: 8,
-        paddingRight: 8,
-    },
-    rowCol: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-    },
-    padded8: {
-        padding: 8
-    },
-    colEven: {
-        width: 180
-    },
-    col0: {
-        paddingLeft: 8,
-        width: 70,
-    },
-    col1: {
-        width: 180
-    },
-    col2: {
-        paddingRight: 8
-    },
-    cardBody: {
-        backgroundColor: BACKGROUND,
-        padding: 16,
-    },
-    boundingBox: {
-        paddingLeft: 24
-    },
-    paddedL16: {
-        paddingLeft: 16
-    },
-    paddedL12: {
-        paddingLeft: 12
-    },
-    paddedL8: {
-        paddingLeft: 8
-    },
-    paddedL4: {
-        paddingLeft: 4
-    },
-    heading: {
-        paddingBottom: 4,
-        fontWeight: 'bold'
-    },
-    paddedV: {
-        padding: 4,
-        paddingLeft: 0,
-        paddingRight: 0
+const report_styles = StyleSheet.create({
+    reportCard: {
+      backgroundColor: LIGHT_COLOR
     },
     allChecked: {
-        backgroundColor: DARK_NEUTRAL
+        backgroundColor: MEDIUM_COLOR
     }
 });
