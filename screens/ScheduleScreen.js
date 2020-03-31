@@ -42,14 +42,62 @@ const games = [
   },
     {
         date: 'Sat, Mar 14',
-        opponent: 'University of Michigan',
-        opponentShort: 'UM',
-        score: 'W 12-11',
-        time: '12 pm',
-        departure: '10 am from hotel',
-        arrival: '11 am',
+        opponent: 'Northeastern',
+        opponentShort: 'NE',
+        score: '',
+        time: '6 pm',
+        departure: '4 pm from hotel',
+        arrival: '5 pm',
         field: 'Kittredge Field',
         address: '2510 Kittredge Loop Dr, Boulder, CO 80305',
+        colors: {
+            jersey: '#fff',
+            skirt: '#fff',
+            socks: '#00033b'
+        }
+    },
+    {
+        date: 'Sat, Mar 28',
+        opponent: 'University of Utah',
+        opponentShort: 'U',
+        score: '',
+        time: '3 pm',
+        departure: '1 pm from IPF',
+        arrival: '2 pm',
+        field: 'WUF',
+        address: '1125 N University Ave, Provo, UT 84604',
+        colors: {
+            jersey: '#fff',
+            skirt: '#fff',
+            socks: '#00033b'
+        }
+    },
+    {
+        date: 'Fri, Apr 3',
+        opponent: 'Utah State University',
+        opponentShort: 'USU',
+        score: '',
+        time: '3:30 pm',
+        departure: '1:30 pm from IPF',
+        arrival: '2:30 pm',
+        field: 'WUF',
+        address: '1125 N University Ave, Provo, UT 84604',
+        colors: {
+            jersey: '#fff',
+            skirt: '#fff',
+            socks: '#00033b'
+        }
+    },
+    {
+        date: 'Sat, Apr 4',
+        opponent: 'UVU',
+        opponentShort: 'UVU',
+        score: '',
+        time: '1 pm',
+        departure: '11 am from IPF',
+        arrival: '12 pm',
+        field: 'UVU Geneva Fields',
+        address: 'Utah Valley University Geneva Fields, W 40 S, Vineyard, UT 84058',
         colors: {
             jersey: '#fff',
             skirt: '#fff',
