@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableHighlight, View, Text, ScrollView, StyleSheet } from 'react-native';
 import Header from "../components/Header";
-import {SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
+import {SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import { Card } from 'react-native-material-ui';
 import {
     BACKGROUND,
@@ -283,21 +283,9 @@ export class ScheduleScreen extends React.Component {
                                 </View>
                             </View>
                             <View style={[styles.row, styles.rowOuter, styles.rowHeaderBody]}>
-                                <View style={styles.col0}>
-                                    <Text>
-                                        {game.time}
-                                    </Text>
-                                </View>
-                                <View style={styles.col1}>
-                                    <Text>
-                                        {game.opponent}
-                                    </Text>
-                                </View>
-                                <View style={styles.col2}>
-                                    <Text>
-                                        {game.field}
-                                    </Text>
-                                </View>
+                                <Text style={styles.col0}>{game.time}    |</Text>
+                                <Text>    {game.opponent}    |    </Text>
+                                <Text style={styles.col2}>{game.field}    </Text>
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -314,10 +302,10 @@ export class ScheduleScreen extends React.Component {
 
   render() {
         return (
-          <View>
+          <View style={styles.screen}>
               <Header title="Game Schedule"/>
               <View>
-                  <ScrollView style={styles.screen}>
+                  <ScrollView style={styles.scrollScreen}>
                       <View style={styles.cardContainer}>
                         {this.getGameCards()}
                       </View>
@@ -335,6 +323,10 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
     screen: {
+        backgroundColor: LIGHTER_COLOR,
+        height: SCREEN_HEIGHT
+    },
+    scrollScreen: {
       maxHeight: SCROLL_SCREEN_HEIGHT,
     },
     cardContainer: {
@@ -373,13 +365,21 @@ export const styles = StyleSheet.create({
     },
     col0: {
         paddingLeft: 8,
-        width: 70,
+        // width: 70,
+        // flex: 2,
+        // flexShrink: 2
     },
-    col1: {
-        width: 180
-    },
+    // col1: {
+    //     // width: 180,
+    //     flex: 5,
+    //     flexShrink: 1
+    // },
     col2: {
-        paddingRight: 8
+        paddingRight: 8,
+        flex: 3,
+        flexShrink: 2,
+        // alignSelf: 'center',
+        // textAlign: 'center'
     },
     cardBody: {
         backgroundColor: LIGHTER_COLOR,
@@ -408,5 +408,5 @@ export const styles = StyleSheet.create({
     heading: {
         paddingBottom: 4,
         fontWeight: 'bold'
-    },
+    }
 });

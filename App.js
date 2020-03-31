@@ -7,6 +7,7 @@ import {ReportScreen} from "./screens/ReportScreen";
 import {ScheduleScreen} from "./screens/ScheduleScreen";
 import {StatsScreen} from "./screens/StatsScreen";
 import { Ionicons } from '@expo/vector-icons';
+import {ACCENT_COLOR} from "./assets/styles/COLORS";
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +44,7 @@ export class Main extends React.Component{
                             },
                         })}
                         tabBarOptions={{
-                            activeTintColor: '#0001ff', //'#39ff00',
+                            activeTintColor: ACCENT_COLOR, //'#39ff00',
                             inactiveTintColor: 'gray',
                         }}
                     >

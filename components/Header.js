@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import {StyleSheet, Text, View} from "react-native";
 import Constants from "expo-constants";
-import {LIGHT_NEUTRAL, ACCENT_COLOR} from "../assets/styles/COLORS";
+import {LIGHT_NEUTRAL, ACCENT_COLOR, LIGHTER_COLOR, MAIN_COLOR} from "../assets/styles/COLORS";
 import {HEADER_HEIGHT} from "../assets/styles/NUMBERS";
 
 export default function Header(props) {
@@ -21,11 +21,11 @@ export default function Header(props) {
 
 const styles = StyleSheet.create({
     statusBar: {
-        backgroundColor: LIGHT_NEUTRAL,
+        backgroundColor: LIGHTER_COLOR,
         height: Constants.statusBarHeight,
     },
     header: {
-        backgroundColor: LIGHT_NEUTRAL,
+        backgroundColor: LIGHTER_COLOR,
         height: HEADER_HEIGHT,
         justifyContent: 'center'
     },

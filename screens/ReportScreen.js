@@ -157,10 +157,10 @@ export class ReportScreen extends React.Component {
 
   render() {
       return (
-          <View>
+          <View style={styles.screen}>
               <Header title="Report"/>
               <View>
-                  <ScrollView style={styles.screen}>
+                  <ScrollView style={styles.scrollScreen}>
                       <View style={styles.cardContainer}>
                         {this.getReportCards()}
                       </View>
