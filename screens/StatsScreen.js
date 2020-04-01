@@ -1,7 +1,14 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import Header from '../components/Header';
-import {BACKGROUND, DARK_NEUTRAL, LIGHT_COLOR, LIGHTER_COLOR, MEDIUM_NEUTRAL} from "../assets/styles/COLORS";
+import {
+    ACCENT_COLOR,
+    BACKGROUND,
+    DARK_NEUTRAL,
+    LIGHT_COLOR,
+    LIGHTER_COLOR, MEDIUM_GRAY,
+    MEDIUM_NEUTRAL
+} from "../assets/styles/COLORS";
 import {SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import {styles} from "./ScheduleScreen";
 
@@ -91,27 +98,16 @@ export class StatsScreen extends React.Component {
 
   render() {
         return (
-            <View style={styles.screen}>
+            <View style={[styles.screen, stats_styles.screen]}>
                 <Header title="Stats"/>
                 <View style={[stats_styles.row, stats_styles.rowOuter, stats_styles.playerHeader]}>
-                    <View style={stats_styles.colEven}>
+                    <View>
                         <Text style={[stats_styles.playerUnderHeading, stats_styles.heading]}>
-                            Player
-                        </Text>
-                        <Text style={stats_styles.playerUnderHeading}>
                             {this.player.name}
                         </Text>
                     </View>
                 </View>
-                <View style={[stats_styles.row, stats_styles.rowOuter]}>
-                    <View style={stats_styles.colEven}>
-                        <Text style={[stats_styles.heading, stats_styles.playerText]}>
-                            Age
-                        </Text>
-                        <Text style={[stats_styles.playerText]}>
-                            {this.player.age}
-                        </Text>
-                    </View>
+                <View style={[stats_styles.row, stats_styles.rowOuter, stats_styles.playerInfo]}>
                     <View style={stats_styles.colEven}>
                         <Text style={[stats_styles.heading, stats_styles.playerText]}>
                             Position
@@ -120,16 +116,16 @@ export class StatsScreen extends React.Component {
                             {this.player.position}
                         </Text>
                     </View>
-                </View>
-                <View style={[stats_styles.row, stats_styles.rowOuter]}>
                     <View style={stats_styles.colEven}>
                         <Text style={[stats_styles.heading, stats_styles.playerText]}>
-                            Year
+                            Age
                         </Text>
                         <Text style={[stats_styles.playerText]}>
-                            {this.player.year}
+                            {this.player.age}
                         </Text>
                     </View>
+                </View>
+                <View style={[stats_styles.row, stats_styles.rowOuter, stats_styles.playerInfo]}>
                     <View style={stats_styles.colEven}>
                         <Text style={[stats_styles.heading, stats_styles.playerText]}>
                             Hometown
@@ -138,8 +134,16 @@ export class StatsScreen extends React.Component {
                             {this.player.hometown}
                         </Text>
                     </View>
+                    <View style={stats_styles.colEven}>
+                        <Text style={[stats_styles.heading, stats_styles.playerText]}>
+                            Year
+                        </Text>
+                        <Text style={[stats_styles.playerText]}>
+                            {this.player.year}
+                        </Text>
+                    </View>
                 </View>
-                <View>
+                <View style={stats_styles.scrollContainer}>
                     <ScrollView style={stats_styles.scrollScreen}>
                         {this.getGrid()}
                     </ScrollView>
@@ -150,9 +154,16 @@ export class StatsScreen extends React.Component {
 }
 
 const stats_styles = StyleSheet.create({
+    screen: {
+      backgroundColor: MEDIUM_GRAY
+    },
+    scrollContainer: {
+        borderTopColor: MEDIUM_GRAY,
+        borderTopWidth: 1
+    },
     scrollScreen: {
         maxHeight: 380,
-        backgroundColor: LIGHTER_COLOR
+        backgroundColor: MEDIUM_GRAY,
     },
     grid: {
       margin: 16,
@@ -181,24 +192,35 @@ const stats_styles = StyleSheet.create({
     },
     rowOuter: {
         padding: 4,
-        backgroundColor: LIGHT_COLOR
+        paddingLeft: 0,
+        paddingRight: 0
+        // backgroundColor: LIGHT_COLOR
     },
     colEven: {
-        width: 180
+        // width: 180
+        flex: 1
     },
     heading: {
         fontWeight: 'bold',
     },
     playerUnderHeading: {
-        fontSize: 18,
-        textAlign: 'left',
+        fontSize: 30,
+        // textAlign: 'center',
+        paddingLeft: 32,
     },
     playerText: {
        fontSize: 16,
-        paddingLeft: 24
+        // paddingLeft: 24,
+        // textAlign: 'center'
     },
     playerHeader: {
       justifyContent: 'flex-start',
-        paddingLeft: 16
+        backgroundColor: '#fff',
+        borderBottomColor: ACCENT_COLOR,
+        borderBottomWidth: 1
+    },
+    playerInfo: {
+        paddingLeft: 32,
+        backgroundColor: '#fff'
     }
 });

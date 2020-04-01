@@ -6,11 +6,11 @@ import {SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import {styles} from "./ScheduleScreen";
 
 import {
-    ACCENT_COLOR,
-    BACKGROUND,
-    DARK_NEUTRAL, LIGHT_COLOR,
-    LIGHTER_COLOR,
-    MEDIUM_COLOR,
+    ACCENT_COLOR, ACCENT_LIGHT,
+    BACKGROUND, BLACK_GRAY, DARK_GRAY,
+    DARK_NEUTRAL, LIGHT_COLOR, LIGHT_GRAY,
+    LIGHTER_COLOR, LIGHTER_GRAY,
+    MEDIUM_COLOR, MEDIUM_GRAY,
     MEDIUM_NEUTRAL
 } from "../assets/styles/COLORS";
 import {TouchableWithoutFeedback} from "react-native-web";
@@ -143,7 +143,7 @@ export class ReportScreen extends React.Component {
                             </Text>
                             <View style={[styles.row, styles.rowOuter]}>
                                 <View style={styles.boundingBox}>
-                                    <Ionicons name="ios-arrow-down" size={20} color="#000"/>
+                                    <Ionicons name="ios-arrow-down" size={20} color={ACCENT_COLOR}/>
                                 </View>
                             </View>
                         </View>
@@ -173,9 +173,11 @@ export class ReportScreen extends React.Component {
 
 const report_styles = StyleSheet.create({
     reportCard: {
-      backgroundColor: LIGHT_COLOR
+        backgroundColor: LIGHTER_GRAY,
+        borderBottomColor: BLACK_GRAY,
+        borderBottomWidth: 1
     },
     allChecked: {
-        backgroundColor: MEDIUM_COLOR
+        backgroundColor: DARK_GRAY
     }
 });

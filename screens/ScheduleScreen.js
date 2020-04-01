@@ -6,10 +6,20 @@ import { Card } from 'react-native-material-ui';
 import {
     BACKGROUND,
     LIGHT_NEUTRAL,
-    DARK_NEUTRAL,
+    DARK_GRAY,
     MEDIUM_NEUTRAL,
     MEDIUM_COLOR,
-    LIGHT_COLOR, LIGHTER_COLOR, MAIN_COLOR
+    LIGHT_COLOR,
+    LIGHTER_COLOR,
+    MAIN_COLOR,
+    LIGHT_GREEN,
+    DARK_GREEN,
+    ORANGE,
+    RED,
+    GREEN,
+    LIGHT_GRAY,
+    ACCENT_COLOR,
+    MEDIUM_GRAY, LIGHTER_GRAY
 } from "../assets/styles/COLORS";
 import {Ionicons} from "@expo/vector-icons";
 import {TouchableWithoutFeedback} from "react-native-web";
@@ -270,15 +280,15 @@ export class ScheduleScreen extends React.Component {
                     <TouchableWithoutFeedback onPress={(event) => this.toggleDrop(event, index)}>
                         <View>
                             <View style={[styles.row, styles.rowOuter, styles.rowHeaderHead]}>
-                                <Text>
+                                <Text style={styles.headerText}>
                                     {game.date}
                                 </Text>
                                 <View style={[styles.row, styles.rowOuter]}>
-                                    <Text>
+                                    <Text style={[styles.headerText, styles.score]}>
                                         {game.score}
                                     </Text>
                                     <View style={styles.boundingBox}>
-                                        <Ionicons name="ios-arrow-down" size={20} color="#000"/>
+                                        <Ionicons name="ios-arrow-down" size={20} color={ACCENT_COLOR}/>
                                     </View>
                                 </View>
                             </View>
@@ -323,15 +333,15 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
     screen: {
-        backgroundColor: LIGHTER_COLOR,
+        backgroundColor: '#fff',
         height: SCREEN_HEIGHT
     },
     scrollScreen: {
       maxHeight: SCROLL_SCREEN_HEIGHT,
     },
     cardContainer: {
-        borderBottomWidth: 4,
-        borderBottomColor: MAIN_COLOR
+        borderBottomWidth: 1,
+        borderBottomColor: DARK_GRAY
     },
     row: {
         flexDirection: 'row',
@@ -341,16 +351,16 @@ export const styles = StyleSheet.create({
         padding: 8,
     },
     rowHeaderHead: {
-        backgroundColor: LIGHT_COLOR,
+        backgroundColor: LIGHT_GRAY,
         padding: 0,
         paddingLeft: 12,
         paddingRight: 12,
         justifyContent: 'space-between',
-        borderTopWidth: 4,
-        borderTopColor: MAIN_COLOR
+        borderTopWidth: 1,
+        borderTopColor: DARK_GRAY
     },
     rowHeaderBody: {
-        backgroundColor: MEDIUM_COLOR,
+        backgroundColor: MEDIUM_GRAY,
         padding: 14,
         paddingLeft: 8,
         paddingRight: 8
@@ -365,15 +375,13 @@ export const styles = StyleSheet.create({
     },
     col0: {
         paddingLeft: 8,
-        // width: 70,
-        // flex: 2,
-        // flexShrink: 2
     },
-    // col1: {
-    //     // width: 180,
-    //     flex: 5,
-    //     flexShrink: 1
-    // },
+    score: {
+        color: ACCENT_COLOR
+    },
+    headerText: {
+      fontWeight: 'bold'
+    },
     col2: {
         paddingRight: 8,
         flex: 3,
@@ -382,7 +390,7 @@ export const styles = StyleSheet.create({
         // textAlign: 'center'
     },
     cardBody: {
-        backgroundColor: LIGHTER_COLOR,
+        backgroundColor: '#fff',
         padding: 16,
     },
     boundingBox: {

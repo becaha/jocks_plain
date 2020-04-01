@@ -7,7 +7,7 @@ import {
     MAIN_COLOR_BACKGROUND,
     LIGHT_NEUTRAL,
     MAIN_COLOR,
-    MEDIUM_NEUTRAL, LIGHT_COLOR, DARK_NEUTRAL
+    MEDIUM_NEUTRAL, LIGHT_COLOR, DARK_NEUTRAL, MEDIUM_GRAY, OPPOSITE_MAIN, MAIN_BACKGROUND
 } from "../assets/styles/COLORS";
 import {HEADER_HEIGHT, HEADING_HEIGHT, SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import Logo from "../assets/y_logo_filled.png";
@@ -134,6 +134,8 @@ const styles = StyleSheet.create({
     },
     rowOuter: {
         padding: 8,
+        borderBottomColor: ACCENT_COLOR,
+        borderBottomWidth: 1
     },
     rowCol: {
         flexDirection: 'column',
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
     },
     cardContainer: {
       height: SCREEN_HEIGHT - Constants.statusBarHeight - HEADING_HEIGHT,
-        backgroundColor: MAIN_COLOR
+        backgroundColor: MAIN_BACKGROUND
     },
     cardBody: {
         padding: 16,
@@ -185,15 +187,15 @@ const styles = StyleSheet.create({
     },
     heading: {
         paddingBottom: 4,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
     homeHeading: {
         fontSize: 25,
-        color: '#fff'
+        color: ACCENT_COLOR,
     },
     homeUnderHeading: {
         fontSize: 20,
-        color: '#fff'
+        color: OPPOSITE_MAIN
     },
     title: {
         fontSize: 40,
@@ -210,7 +212,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         height: HEADING_HEIGHT,
-        flex: 1
+        flex: 1,
+        borderBottomColor: ACCENT_COLOR,
+        borderBottomWidth: 1
     },
     lightButton: {
         backgroundColor: '#fff'
