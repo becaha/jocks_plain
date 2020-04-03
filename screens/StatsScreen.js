@@ -13,7 +13,7 @@ import {SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import {styles} from "./ScheduleScreen";
 
 
-const statTypes = ['', 'S', 'G', 'TO', 'TA', 'GB', 'F', 'FP'];
+const statTypes = ['Opp', 'S', 'G', 'TO', 'TA', 'GB', 'F', 'FP'];
 const stats = [
     {opponent: 'BC', stats: [0,3,4,2,1,0,0]},
     {opponent: 'UM', stats: [2,3,6,1,1,0,3]},
@@ -46,8 +46,12 @@ export class StatsScreen extends React.Component {
 
     getHeaderRow(row) {
         return row.map((cell, index) => {
+            let styles = [stats_styles.cell];
+            if (index === 0) {
+                styles.push(stats_styles.cellOpp);
+            }
             return (
-                <View key={index} style={[stats_styles.cell]}>
+                <View key={index} style={styles}>
                     <Text style={[stats_styles.cellText, stats_styles.cellTitle]}>
                         {cell}
                     </Text>
@@ -58,8 +62,12 @@ export class StatsScreen extends React.Component {
 
     getRowCells(row) {
         let stats = row.stats.map((cell, index) => {
+            let styles = [stats_styles.cell];
+            if (index === 0) {
+                styles.push(stats_styles.cellOpp);
+            }
            return (
-               <View key={index} style={stats_styles.cell}>
+               <View key={index} style={styles}>
                    <Text style={stats_styles.cellText}>
                        {cell}
                    </Text>
@@ -180,6 +188,9 @@ const stats_styles = StyleSheet.create({
     cell: {
         width: 40,
         padding: 8,
+    },
+    cellOpp: {
+        width: 45
     },
     cellTitle: {
       fontWeight: 'bold',
