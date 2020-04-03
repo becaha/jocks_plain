@@ -105,6 +105,7 @@ export class StatsScreen extends React.Component {
                         <Text style={[stats_styles.playerUnderHeading, stats_styles.heading]}>
                             {this.player.name}
                         </Text>
+                        <View style={styles.line}></View>
                     </View>
                 </View>
                 <View style={[stats_styles.row, stats_styles.rowOuter, stats_styles.playerInfo]}>
@@ -206,7 +207,7 @@ const stats_styles = StyleSheet.create({
     playerUnderHeading: {
         fontSize: 30,
         // textAlign: 'center',
-        paddingLeft: 32,
+        paddingLeft: 16,
     },
     playerText: {
        fontSize: 16,
@@ -216,8 +217,6 @@ const stats_styles = StyleSheet.create({
     playerHeader: {
       justifyContent: 'flex-start',
         backgroundColor: '#fff',
-        borderBottomColor: ACCENT_COLOR,
-        borderBottomWidth: 1
     },
     playerInfo: {
         paddingLeft: 32,

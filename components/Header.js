@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         height: HEADER_HEIGHT,
         justifyContent: 'center',
         borderBottomWidth: 1,
-        borderBottomColor: BLACK_GRAY
+        borderBottomColor: MEDIUM_GRAY
     },
     title: {
         color: ACCENT_COLOR,

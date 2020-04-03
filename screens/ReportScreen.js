@@ -10,7 +10,7 @@ import {
     BACKGROUND, BLACK_GRAY, DARK_GRAY,
     DARK_NEUTRAL, LIGHT_COLOR, LIGHT_GRAY,
     LIGHTER_COLOR, LIGHTER_GRAY,
-    MEDIUM_COLOR, MEDIUM_GRAY,
+    MEDIUM_COLOR, MEDIUM_GRAY, MEDIUM_GRAY_1,
     MEDIUM_NEUTRAL
 } from "../assets/styles/COLORS";
 import {TouchableWithoutFeedback} from "react-native-web";
@@ -132,6 +132,21 @@ export class ReportScreen extends React.Component {
         return weekStyles;
     }
 
+    getToggleIcon(weekIndex) {
+        if (this.showReports.includes(weekIndex)) {
+            return (
+                <View style={styles.boundingBox}>
+                    <Ionicons name="ios-arrow-up" size={20} color={ACCENT_COLOR}/>
+                </View>
+            );
+        }
+        return (
+            <View style={styles.boundingBox}>
+                <Ionicons name="ios-arrow-down" size={20} color={ACCENT_COLOR}/>
+            </View>
+        );
+    }
+
     getReportCards() {
         let reportCards = this.reportWeeks.map((week, index) => {
             return (
@@ -142,9 +157,7 @@ export class ReportScreen extends React.Component {
                                 {week.date}
                             </Text>
                             <View style={[styles.row, styles.rowOuter]}>
-                                <View style={styles.boundingBox}>
-                                    <Ionicons name="ios-arrow-down" size={20} color={ACCENT_COLOR}/>
-                                </View>
+                                {this.getToggleIcon(index)}
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -174,10 +187,10 @@ export class ReportScreen extends React.Component {
 const report_styles = StyleSheet.create({
     reportCard: {
         backgroundColor: LIGHTER_GRAY,
-        borderBottomColor: BLACK_GRAY,
+        borderBottomColor: MEDIUM_GRAY,
         borderBottomWidth: 1
     },
     allChecked: {
-        backgroundColor: DARK_GRAY
+        backgroundColor: MEDIUM_GRAY_1
     }
 });

@@ -205,7 +205,6 @@ export class ScheduleScreen extends React.Component {
     }
 
     toggleDrop(event, gameIndex) {
-        console.log("toggle");
         if (this.showBodies.includes(gameIndex)) {
             // take out
             this.showBodies = this.showBodies.filter(i => i !== gameIndex);
@@ -213,7 +212,6 @@ export class ScheduleScreen extends React.Component {
             this.showBodies.push(gameIndex);
         }
         this.setState({toggle: true});
-        console.log("end toggle")
     }
 
     getBody(game, gameIndex) {
@@ -273,6 +271,21 @@ export class ScheduleScreen extends React.Component {
         return null;
     }
 
+    getToggleIcon(gameIndex) {
+        if (this.showBodies.includes(gameIndex)) {
+            return (
+                <View style={styles.boundingBox}>
+                    <Ionicons name="ios-arrow-up" size={20} color={ACCENT_COLOR}/>
+                </View>
+            );
+        }
+        return (
+            <View style={styles.boundingBox}>
+                <Ionicons name="ios-arrow-down" size={20} color={ACCENT_COLOR}/>
+            </View>
+        );
+    }
+
     getGameCards() {
         let gameCards = this.games.map((game, index) => {
             return (
@@ -287,9 +300,7 @@ export class ScheduleScreen extends React.Component {
                                     <Text style={[styles.headerText, styles.score]}>
                                         {game.score}
                                     </Text>
-                                    <View style={styles.boundingBox}>
-                                        <Ionicons name="ios-arrow-down" size={20} color={ACCENT_COLOR}/>
-                                    </View>
+                                    {this.getToggleIcon(index)}
                                 </View>
                             </View>
                             <View style={[styles.row, styles.rowOuter, styles.rowHeaderBody]}>
@@ -416,5 +427,9 @@ export const styles = StyleSheet.create({
     heading: {
         paddingBottom: 4,
         fontWeight: 'bold'
+    },
+    line: {
+        borderBottomColor: ACCENT_COLOR,
+        borderBottomWidth: 1
     }
 });
