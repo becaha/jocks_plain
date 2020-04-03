@@ -220,6 +220,7 @@ const stats_styles = StyleSheet.create({
     },
     playerInfo: {
         paddingLeft: 32,
+        paddingBottom: 8,
         backgroundColor: '#fff'
     }
 });

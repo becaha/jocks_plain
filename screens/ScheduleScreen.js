@@ -429,7 +429,8 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     line: {
-        borderBottomColor: ACCENT_COLOR,
-        borderBottomWidth: 1
+        borderTopColor: ACCENT_COLOR,
+        borderTopWidth: 1,
+        paddingBottom: 4
     }
 });
