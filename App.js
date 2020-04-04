@@ -7,6 +7,8 @@ import {ReportScreen} from "./screens/ReportScreen";
 import {ScheduleScreen} from "./screens/ScheduleScreen";
 import {StatsScreen} from "./screens/StatsScreen";
 import { Ionicons } from '@expo/vector-icons';
+import * as Font from 'expo-font';
+
 import {
     ACCENT_COLOR,
     DARK_GRAY,
@@ -75,5 +77,5 @@ export class Main extends React.Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    }
+    },
 });

@@ -8,8 +8,10 @@ export const BACKGROUND = '#fff';
 export const GREEN = "#0AB43B";
 export const ORANGE = "#F57D34";
 export const RED = "#F54B39";
+export const DARKER_RED = "#dd4837";
 export const BLUE = '#88c1ff';
 export const NAVY = "#002153";
+export const PURPLE = "#aa44ff";
 export const LIGHT_BLUE = "#e7f1ff";
 
 export const LIGHTER_GRAY = "#f1f1f1";

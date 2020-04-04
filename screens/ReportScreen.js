@@ -94,9 +94,18 @@ export class ReportScreen extends React.Component {
 
     getCheckbox(task) {
         if (!task.checked) {
-            return (<Ionicons name="ios-square-outline" size={35} color={ACCENT_COLOR}/>);
+            return (
+                <View style={{height: 35, width: 35}}>
+                    <Ionicons name="ios-square-outline" size={35} color={ACCENT_COLOR}/>
+                </View>
+            );
         }
-        return (<Ionicons name="ios-square" size={35} color={ACCENT_COLOR}/>);
+        return (
+            <View style={{height: 35, width: 35}}>
+                <Ionicons name="ios-square" size={35} color={ACCENT_COLOR} style={{position: 'absolute'}}/>
+                <Ionicons name="ios-checkmark" size={43} color='#fff' style={{position: 'absolute', top: -4, left: 2}}/>
+            </View>
+        );
     }
 
     getBody(week, weekIndex) {

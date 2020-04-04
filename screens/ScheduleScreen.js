@@ -37,9 +37,9 @@ const games = [
     field: 'Kittredge Field',
     address: '2510 Kittredge Loop Dr, Boulder, CO 80305',
     colors: {
-      jersey: '#fff',
-      skirt: '#00033b',
-      socks: '#fff'
+      jersey: 'White',
+      skirt: 'Blue',
+      socks: 'White'
     }
   },
   {
@@ -53,9 +53,9 @@ const games = [
     field: 'Kittredge Field',
     address: '2510 Kittredge Loop Dr, Boulder, CO 80305',
     colors: {
-      jersey: '#fff',
-      skirt: '#fff',
-      socks: '#00033b'
+      jersey: 'White',
+      skirt: 'White',
+      socks: 'Blue'
     }
   },
     {
@@ -69,9 +69,9 @@ const games = [
         field: 'Kittredge Field',
         address: '2510 Kittredge Loop Dr, Boulder, CO 80305',
         colors: {
-            jersey: '#fff',
-            skirt: '#fff',
-            socks: '#00033b'
+            jersey: 'White',
+            skirt: 'White',
+            socks: 'Blue'
         }
     },
     {
@@ -85,9 +85,9 @@ const games = [
         field: 'WUF',
         address: '1125 N University Ave, Provo, UT 84604',
         colors: {
-            jersey: '#fff',
-            skirt: '#fff',
-            socks: '#00033b'
+            jersey: 'White',
+            skirt: 'White',
+            socks: 'Blue'
         }
     },
     {
@@ -101,9 +101,9 @@ const games = [
         field: 'WUF',
         address: '1125 N University Ave, Provo, UT 84604',
         colors: {
-            jersey: '#fff',
-            skirt: '#fff',
-            socks: '#00033b'
+            jersey: 'White',
+            skirt: 'White',
+            socks: 'Blue'
         }
     },
     {
@@ -117,9 +117,9 @@ const games = [
         field: 'UVU Geneva Fields',
         address: 'Utah Valley University Geneva Fields, W 40 S, Vineyard, UT 84058',
         colors: {
-            jersey: '#fff',
-            skirt: '#fff',
-            socks: '#00033b'
+            jersey: 'White',
+            skirt: 'White',
+            socks: 'Blue'
         }
     },
     {
@@ -133,9 +133,9 @@ const games = [
         field: 'UVU Geneva Fields',
         address: 'Utah Valley University Geneva Fields, W 40 S, Vineyard, UT 84058',
         colors: {
-            jersey: '#fff',
-            skirt: '#fff',
-            socks: '#00033b'
+            jersey: 'White',
+            skirt: 'White',
+            socks: 'Blue'
         }
     },
     {
@@ -149,9 +149,9 @@ const games = [
         field: 'Aggie Legacy Fields',
         address: 'USU Legacy Fields, Utah State University, Logan, UT 84321',
         colors: {
-            jersey: '#fff',
-            skirt: '#fff',
-            socks: '#00033b'
+            jersey: 'White',
+            skirt: 'White',
+            socks: 'Blue'
         }
     },
     {
@@ -165,9 +165,9 @@ const games = [
         field: 'Aggie Legacy Fields',
         address: 'USU Legacy Fields, Utah State University, Logan, UT 84321',
         colors: {
-            jersey: '#fff',
-            skirt: '#fff',
-            socks: '#00033b'
+            jersey: 'White',
+            skirt: 'White',
+            socks: 'Blue'
         }
     },
     {
@@ -181,9 +181,9 @@ const games = [
         field: 'Round Rock Complex',
         address: 'Round Rock, Texas',
         colors: {
-            jersey: '#fff',
-            skirt: '#fff',
-            socks: '#00033b'
+            jersey: 'White',
+            skirt: 'White',
+            socks: 'Blue'
         }
     }
 ];
@@ -197,12 +197,6 @@ export class ScheduleScreen extends React.Component {
         this.state = {toggle: true};
     }
 
-    getColorIcon(color) {
-        if (color === '#fff') {
-            return (<Ionicons name="ios-square-outline" size={25} color='#000'/>);
-        }
-        return (<Ionicons name="ios-square" size={25} color={color}/>);
-    }
 
     toggleDrop(event, gameIndex) {
         if (this.showBodies.includes(gameIndex)) {
@@ -247,24 +241,15 @@ export class ScheduleScreen extends React.Component {
                     <Text style={[styles.heading]}>
                         Colors
                     </Text>
-                    <View style={[styles.row, styles.paddedL4]}>
-                        {this.getColorIcon(game.colors.jersey)}
-                        <Text style={styles.paddedL8}>
-                            Jersey
-                        </Text>
-                    </View>
-                    <View style={[styles.row, styles.paddedL4]}>
-                        {this.getColorIcon(game.colors.skirt)}
-                        <Text style={styles.paddedL8}>
-                            Skirt
-                        </Text>
-                    </View>
-                    <View style={[styles.row, styles.paddedL4]}>
-                        {this.getColorIcon(game.colors.socks)}
-                        <Text style={styles.paddedL8}>
-                            Socks
-                        </Text>
-                    </View>
+                    <Text style={styles.paddedL8}>
+                        {game.colors.skirt} Jersey
+                    </Text>
+                    <Text style={styles.paddedL8}>
+                        {game.colors.skirt} Skirt
+                    </Text>
+                    <Text style={styles.paddedL8}>
+                        {game.colors.socks} Socks
+                    </Text>
                 </View>
             </View>);
         }

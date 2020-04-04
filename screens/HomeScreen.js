@@ -13,6 +13,8 @@ import {HEADER_HEIGHT, HEADING_HEIGHT, SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from
 import Logo from "../assets/y_logo_filled.png";
 import Constants from "expo-constants";
 import { Button } from 'react-native-material-ui';
+import { AppLoading } from 'expo';
+import * as Font from 'expo-font';
 
 
 const announcements = ['Practice Cancelled March 30', 'Regionals at USU April 17-18', 'Team Banquet March 30'];
@@ -26,16 +28,35 @@ const currentWeek = {
 const teamSchool = 'BYU';
 const teamName = 'Women\'s Lacrosse';
 
+let customFonts = {
+    'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
+    'Inter-SemiBoldItalic':
+        'https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12',
+};
+
+
 export class HomeScreen extends React.Component {
+
         constructor(props) {
             super(props);
             this.announcements = announcements;
             this.currentWeek = currentWeek;
             this.teamSchool = teamSchool;
             this.teamName = teamName;
+            this.state = {fontsLoaded: false};
         }
 
-        getAnnouncements() {
+    async _loadFontsAsync() {
+        await Font.loadAsync(customFonts);
+        this.setState({ fontsLoaded: true });
+    }
+
+    componentDidMount() {
+        this._loadFontsAsync();
+    }
+
+    getAnnouncements() {
+        if (this.state.fontsLoaded) {
             return this.announcements.map((ann, index) => {
                 return (
                     <Text key={index} style={[styles.homeUnderHeading, styles.paddedV8, styles.paddedL16]}>
@@ -43,7 +64,10 @@ export class HomeScreen extends React.Component {
                     </Text>
                 );
             });
+        } else {
+            return <AppLoading />;
         }
+    }
 
     getWeekTasks() {
         return this.currentWeek.tasks.map((task, index) => {
@@ -121,6 +145,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: HEADER_HEIGHT,
         justifyContent: 'center'
+    },
+    fonts: {
+        fontFamily: 'Bodoni 75'
     },
     row: {
         flexDirection: 'row',
@@ -204,7 +231,8 @@ const styles = StyleSheet.create({
         color: MAIN_COLOR,
         padding: 16,
         paddingBottom: 8,
-        paddingTop: 4
+        paddingTop: 4,
+        fontFamily: 'Bodoni 75'
     },
     headingMain: {
         paddingTop: 32,
