@@ -11,7 +11,7 @@ import {
     MEDIUM_GRAY,
     DARK_GRAY, BLACK_GRAY
 } from "../assets/styles/COLORS";
-import {HEADER_HEIGHT} from "../assets/styles/NUMBERS";
+import {HEADER_HEIGHT, FONT_SUB, FONT_MAIN} from "../assets/styles/NUMBERS";
 
 export default function Header(props) {
     return (
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
         color: ACCENT_COLOR,
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
+        fontFamily: FONT_MAIN
     }
 });

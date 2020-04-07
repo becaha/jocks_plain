@@ -9,7 +9,7 @@ import {
     LIGHTER_COLOR, MEDIUM_GRAY,
     MEDIUM_NEUTRAL
 } from "../assets/styles/COLORS";
-import {SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
+import {FONT_BOLD, FONT_MAIN, FONT_SUB, SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import {styles} from "./ScheduleScreen";
 
 
@@ -194,13 +194,16 @@ const stats_styles = StyleSheet.create({
     },
     cellTitle: {
       fontWeight: 'bold',
+        // fontFamily: FONT_BOLD
     },
     rowTitle: {
       width: 50,
-        textAlign: 'left'
+        textAlign: 'left',
+        // fontFamily: FONT_SUB
     },
     cellText: {
       textAlign: 'center',
+        // fontFamily: FONT_SUB
     },
     rowOuter: {
         padding: 4,
@@ -214,14 +217,17 @@ const stats_styles = StyleSheet.create({
     },
     heading: {
         fontWeight: 'bold',
+        fontFamily: FONT_BOLD
     },
     playerUnderHeading: {
         fontSize: 30,
         // textAlign: 'center',
         paddingLeft: 16,
+        fontFamily: FONT_MAIN
     },
     playerText: {
        fontSize: 16,
+        fontFamily: FONT_SUB
         // paddingLeft: 24,
         // textAlign: 'center'
     },

@@ -9,7 +9,15 @@ import {
     MAIN_COLOR,
     MEDIUM_NEUTRAL, LIGHT_COLOR, DARK_NEUTRAL, MEDIUM_GRAY, OPPOSITE_MAIN, MAIN_BACKGROUND
 } from "../assets/styles/COLORS";
-import {HEADER_HEIGHT, HEADING_HEIGHT, SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
+import {
+    FONT_MAIN,
+    FONT_SUB,
+    FONT_BOLD,
+    HEADER_HEIGHT,
+    HEADING_HEIGHT,
+    SCREEN_HEIGHT,
+    SCROLL_SCREEN_HEIGHT
+} from "../assets/styles/NUMBERS";
 import Logo from "../assets/y_logo_filled.png";
 import Constants from "expo-constants";
 import { Button } from 'react-native-material-ui';
@@ -28,13 +36,6 @@ const currentWeek = {
 const teamSchool = 'BYU';
 const teamName = 'Women\'s Lacrosse';
 
-let customFonts = {
-    'Inter-Black': require('./assets/fonts/Inter-Black.otf'),
-    'Inter-SemiBoldItalic':
-        'https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12',
-};
-
-
 export class HomeScreen extends React.Component {
 
         constructor(props) {
@@ -43,30 +44,16 @@ export class HomeScreen extends React.Component {
             this.currentWeek = currentWeek;
             this.teamSchool = teamSchool;
             this.teamName = teamName;
-            this.state = {fontsLoaded: false};
         }
-
-    async _loadFontsAsync() {
-        await Font.loadAsync(customFonts);
-        this.setState({ fontsLoaded: true });
-    }
-
-    componentDidMount() {
-        this._loadFontsAsync();
-    }
 
     getAnnouncements() {
-        if (this.state.fontsLoaded) {
-            return this.announcements.map((ann, index) => {
-                return (
-                    <Text key={index} style={[styles.homeUnderHeading, styles.paddedV8, styles.paddedL16]}>
-                        {ann}
-                    </Text>
-                );
-            });
-        } else {
-            return <AppLoading />;
-        }
+        return this.announcements.map((ann, index) => {
+            return (
+                <Text key={index} style={[styles.homeUnderHeading, styles.paddedV8, styles.paddedL16]}>
+                    {ann}
+                </Text>
+            );
+        });
     }
 
     getWeekTasks() {
@@ -146,9 +133,6 @@ const styles = StyleSheet.create({
         height: HEADER_HEIGHT,
         justifyContent: 'center'
     },
-    fonts: {
-        fontFamily: 'Bodoni 75'
-    },
     row: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -215,14 +199,17 @@ const styles = StyleSheet.create({
     heading: {
         paddingBottom: 4,
         fontWeight: 'bold',
+        fontFamily: FONT_BOLD
     },
     homeHeading: {
         fontSize: 25,
         color: ACCENT_COLOR,
+        fontFamily: FONT_MAIN
     },
     homeUnderHeading: {
         fontSize: 20,
-        color: OPPOSITE_MAIN
+        color: OPPOSITE_MAIN,
+        fontFamily: FONT_SUB
     },
     title: {
         fontSize: 40,
@@ -232,7 +219,7 @@ const styles = StyleSheet.create({
         padding: 16,
         paddingBottom: 8,
         paddingTop: 4,
-        fontFamily: 'Bodoni 75'
+        fontFamily: FONT_MAIN
     },
     headingMain: {
         paddingTop: 32,
@@ -253,6 +240,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         padding: 8,
         paddingLeft: 12,
-        paddingRight: 12
+        paddingRight: 12,
+        fontFamily: FONT_BOLD
     }
 });

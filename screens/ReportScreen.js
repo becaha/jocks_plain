@@ -115,7 +115,7 @@ export class ReportScreen extends React.Component {
                                           onPress={(event) => this.toggleCheck(event, week, task)}>
                     <View style={styles.row}>
                         {this.getCheckbox(task)}
-                        <Text style={[styles.paddedV, styles.paddedL16]}>
+                        <Text style={[styles.text, styles.paddedV, styles.paddedL16]}>
                             {task.task}
                         </Text>
                     </View>
@@ -162,7 +162,7 @@ export class ReportScreen extends React.Component {
                 <View key={index} style={styles.card}>
                     <TouchableWithoutFeedback onPress={(event) => this.toggleDrop(event, index)}>
                         <View style={this.getWeekStyles(week)}>
-                            <Text>
+                            <Text style={styles.text}>
                                 {week.date}
                             </Text>
                             <View style={[styles.row, styles.rowOuter]}>

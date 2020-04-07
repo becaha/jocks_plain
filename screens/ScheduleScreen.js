@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableHighlight, View, Text, ScrollView, StyleSheet } from 'react-native';
 import Header from "../components/Header";
-import {SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
+import {FONT_BOLD, FONT_MAIN, FONT_SUB, SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import { Card } from 'react-native-material-ui';
 import {
     BACKGROUND,
@@ -216,7 +216,7 @@ export class ScheduleScreen extends React.Component {
                         <Text style={[styles.heading]}>
                             Departure
                         </Text>
-                        <Text style={styles.paddedL4}>
+                        <Text style={[styles.text, styles.paddedL4]}>
                             {game.departure}
                         </Text>
                     </View>
@@ -224,7 +224,7 @@ export class ScheduleScreen extends React.Component {
                         <Text style={[styles.heading]}>
                             Arrival
                         </Text>
-                        <Text style={styles.paddedL4}>
+                        <Text style={[styles.text, styles.paddedL4]}>
                             {game.arrival}
                         </Text>
                     </View>
@@ -233,7 +233,7 @@ export class ScheduleScreen extends React.Component {
                     <Text style={[styles.heading]}>
                         Location
                     </Text>
-                    <Text style={styles.paddedL4}>
+                    <Text style={[styles.text, styles.paddedL4]}>
                         {game.address}
                     </Text>
                 </View>
@@ -241,13 +241,13 @@ export class ScheduleScreen extends React.Component {
                     <Text style={[styles.heading]}>
                         Colors
                     </Text>
-                    <Text style={styles.paddedL8}>
+                    <Text style={[styles.text, styles.paddedL8]}>
                         {game.colors.skirt} Jersey
                     </Text>
-                    <Text style={styles.paddedL8}>
+                    <Text style={[styles.text, styles.paddedL8]}>
                         {game.colors.skirt} Skirt
                     </Text>
-                    <Text style={styles.paddedL8}>
+                    <Text style={[styles.text, styles.paddedL8]}>
                         {game.colors.socks} Socks
                     </Text>
                 </View>
@@ -290,7 +290,7 @@ export class ScheduleScreen extends React.Component {
                             </View>
                             <View style={[styles.row, styles.rowOuter, styles.rowHeaderBody]}>
                                 <Text style={styles.col0}>{game.time}    |</Text>
-                                <Text>    {game.opponent}    |    </Text>
+                                <Text style={styles.text}>    {game.opponent}    |    </Text>
                                 <Text style={styles.col2}>{game.field}    </Text>
                             </View>
                         </View>
@@ -371,17 +371,21 @@ export const styles = StyleSheet.create({
     },
     col0: {
         paddingLeft: 8,
+        fontFamily: FONT_SUB
     },
     score: {
-        color: ACCENT_COLOR
+        color: ACCENT_COLOR,
+        fontFamily: FONT_SUB
     },
     headerText: {
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+        fontFamily: FONT_MAIN
     },
     col2: {
         paddingRight: 8,
         flex: 3,
         flexShrink: 2,
+        fontFamily: FONT_SUB
         // alignSelf: 'center',
         // textAlign: 'center'
     },
@@ -411,11 +415,15 @@ export const styles = StyleSheet.create({
     },
     heading: {
         paddingBottom: 4,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontFamily: FONT_BOLD
     },
     line: {
         borderTopColor: ACCENT_COLOR,
         borderTopWidth: 1,
         paddingBottom: 4
+    },
+    text: {
+      fontFamily: FONT_SUB
     }
 });
