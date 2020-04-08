@@ -234,6 +234,7 @@ const stats_styles = StyleSheet.create({
     playerHeader: {
       justifyContent: 'flex-start',
         backgroundColor: '#fff',
+        paddingTop: 16
     },
     playerInfo: {
         paddingLeft: 32,

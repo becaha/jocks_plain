@@ -23,8 +23,8 @@ import {
 const Tab = createBottomTabNavigator();
 
 let customFonts = {
-    'Quicksand-Regular': require('./assets/fonts/Quicksand-Regular.otf'),
-    'Quicksand-Bold': require('./assets/fonts/Quicksand-Bold.otf'),
+    'Comme-Bold': require('./assets/fonts/Comme-Bold.ttf'),
+    'Mazzard': require('./assets/fonts/MazzardSoftM-Light.otf'),
     'Inter-SemiBoldItalic':
         'https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12',
 };
