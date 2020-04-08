@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         color: ACCENT_COLOR,
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 22,
         fontFamily: FONT_MAIN
     }
 });

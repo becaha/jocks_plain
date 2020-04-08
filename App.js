@@ -24,6 +24,7 @@ const Tab = createBottomTabNavigator();
 
 let customFonts = {
     'Comme-Bold': require('./assets/fonts/Comme-Bold.ttf'),
+    'Comme-SemiBold': require('./assets/fonts/Comme-SemiBold.ttf'),
     'Mazzard': require('./assets/fonts/MazzardSoftM-Light.otf'),
     'Inter-SemiBoldItalic':
         'https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12',

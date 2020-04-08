@@ -17,49 +17,49 @@ import {TouchableWithoutFeedback} from "react-native-web";
 
 const reportWeeks = [
     {
-        date: 'Mar 23 - Mar 28',
+        date: 'Mar 23 -   Mar 28',
         allChecked: false,
         tasks: [
             {task:'1000 Touches', checked: false},
             {task: '3 Miles', checked: false}]
     },
     {
-        date: 'Mar 30 - Apr 4',
+        date: 'Mar 30 -   Apr 4',
         allChecked: false,
         tasks: [
             {task:'750 Touches', checked: false},
             {task: '3 Miles', checked: false}]
     },
     {
-        date: 'Apr 6 - Apr 11',
+        date: 'Apr 6 -   Apr 11',
         allChecked: false,
         tasks: [
             {task:'1500 Touches', checked: false},
             {task: '2 Miles', checked: false}]
     },
     {
-        date: 'Apr 13 - Apr 18',
+        date: 'Apr 13 -   Apr 18',
         allChecked: false,
         tasks: [
             {task:'500 Touches', checked: false},
             {task: '1 Mile', checked: false}]
     },
     {
-        date: 'Apr 20 - Apr 25',
+        date: 'Apr 20 -   Apr 25',
         allChecked: false,
         tasks: [
             {task:'1500 Touches', checked: false},
             {task: '2 Miles', checked: false}]
     },
     {
-        date: 'Apr 27 - May 2',
+        date: 'Apr 27 -   May 2',
         allChecked: false,
         tasks: [
             {task:'1000 Touches', checked: false},
             {task: '3 Miles', checked: false}]
     },
     {
-        date: 'May 4 - May 9',
+        date: 'May 4 -   May 9',
         allChecked: false,
         tasks: [
             {task:'500 Touches', checked: false},
@@ -115,7 +115,7 @@ export class ReportScreen extends React.Component {
                                           onPress={(event) => this.toggleCheck(event, week, task)}>
                     <View style={styles.row}>
                         {this.getCheckbox(task)}
-                        <Text style={[styles.text, styles.paddedV, styles.paddedL16]}>
+                        <Text style={[styles.text, styles.paddedV, {paddingTop: 10}]}>
                             {task.task}
                         </Text>
                     </View>
@@ -162,7 +162,7 @@ export class ReportScreen extends React.Component {
                 <View key={index} style={styles.card}>
                     <TouchableWithoutFeedback onPress={(event) => this.toggleDrop(event, index)}>
                         <View style={this.getWeekStyles(week)}>
-                            <Text style={styles.text}>
+                            <Text style={[styles.text, styles.headerText]}>
                                 {week.date}
                             </Text>
                             <View style={[styles.row, styles.rowOuter]}>

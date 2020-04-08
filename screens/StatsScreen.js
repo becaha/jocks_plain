@@ -118,7 +118,7 @@ export class StatsScreen extends React.Component {
                 </View>
                 <View style={[stats_styles.row, stats_styles.rowOuter, stats_styles.playerInfo]}>
                     <View style={stats_styles.colEven}>
-                        <Text style={[stats_styles.heading, stats_styles.playerText]}>
+                        <Text style={[stats_styles.playerText, stats_styles.heading]}>
                             Position
                         </Text>
                         <Text style={[stats_styles.playerText]}>
@@ -126,7 +126,7 @@ export class StatsScreen extends React.Component {
                         </Text>
                     </View>
                     <View style={stats_styles.colEven}>
-                        <Text style={[stats_styles.heading, stats_styles.playerText]}>
+                        <Text style={[stats_styles.playerText, stats_styles.heading]}>
                             Age
                         </Text>
                         <Text style={[stats_styles.playerText]}>
@@ -136,7 +136,7 @@ export class StatsScreen extends React.Component {
                 </View>
                 <View style={[stats_styles.row, stats_styles.rowOuter, stats_styles.playerInfo]}>
                     <View style={stats_styles.colEven}>
-                        <Text style={[stats_styles.heading, stats_styles.playerText]}>
+                        <Text style={[stats_styles.playerText, stats_styles.heading]}>
                             Hometown
                         </Text>
                         <Text style={[stats_styles.playerText]}>
@@ -144,7 +144,7 @@ export class StatsScreen extends React.Component {
                         </Text>
                     </View>
                     <View style={stats_styles.colEven}>
-                        <Text style={[stats_styles.heading, stats_styles.playerText]}>
+                        <Text style={[stats_styles.playerText, stats_styles.heading]}>
                             Year
                         </Text>
                         <Text style={[stats_styles.playerText]}>
@@ -217,10 +217,11 @@ const stats_styles = StyleSheet.create({
     },
     heading: {
         fontWeight: 'bold',
-        fontFamily: FONT_BOLD
+        fontFamily: FONT_BOLD,
+        paddingBottom: 4
     },
     playerUnderHeading: {
-        fontSize: 30,
+        fontSize: 20,
         // textAlign: 'center',
         paddingLeft: 16,
         fontFamily: FONT_MAIN
@@ -234,7 +235,7 @@ const stats_styles = StyleSheet.create({
     playerHeader: {
       justifyContent: 'flex-start',
         backgroundColor: '#fff',
-        paddingTop: 16
+        paddingTop: 8,
     },
     playerInfo: {
         paddingLeft: 32,

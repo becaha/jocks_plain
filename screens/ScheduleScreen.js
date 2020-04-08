@@ -302,10 +302,6 @@ export class ScheduleScreen extends React.Component {
         return gameCards;
     }
 
-    handleScroll(event) {
-        console.log("scroll", event);
-    }
-
   render() {
         return (
           <View style={styles.screen}>
@@ -424,6 +420,6 @@ export const styles = StyleSheet.create({
         paddingBottom: 4
     },
     text: {
-      fontFamily: FONT_SUB
+      fontFamily: FONT_SUB,
     }
 });
