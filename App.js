@@ -10,7 +10,8 @@ import { Ionicons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { TextInput } from 'react-native';
-import { KeyboardAvoidingView } from 'react-native';
+import { Keyboard, KeyboardAvoidingView } from 'react-native';
+
 
 
 import {
@@ -23,7 +24,6 @@ import {
     MEDIUM_GRAY
 } from "./assets/styles/COLORS";
 import {FONT_BOLD, FONT_MAIN, FONT_SUB, SCREEN_HEIGHT, SCREEN_WIDTH} from "./assets/styles/NUMBERS";
-import Button from "react-native-material-ui/src/Button";
 import {TouchableWithoutFeedback} from "react-native-web";
 
 const Tab = createBottomTabNavigator();
@@ -160,11 +160,11 @@ export class Main extends React.Component{
             }
             else if (this.state.signIn) {
                 return (
-                    <View style={styles.container}>
+                    <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
                         <View style={[styles.screen, {backgroundColor: '#fff'}]}>
                             {this.getSignIn()}
                         </View>
-                    </View>
+                    </TouchableWithoutFeedback>
                 );
             }
             else {
