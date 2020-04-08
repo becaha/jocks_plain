@@ -30,7 +30,7 @@ const games = [
     date: 'Fri, Mar 13',
     opponent: 'Boston College',
     opponentShort: 'BC',
-    score: 'W 15-7',
+    score: 'W 15 -   7',
     time: '4 pm',
     departure: '6 am from IPF',
     arrival: '3 pm',
@@ -46,7 +46,7 @@ const games = [
     date: 'Sat, Mar 14',
     opponent: 'University of Michigan',
     opponentShort: 'UM',
-    score: 'W 12-11',
+    score: 'W 12 -   11',
     time: '12 pm',
     departure: '10 am from hotel',
     arrival: '11 am',
@@ -371,7 +371,7 @@ export const styles = StyleSheet.create({
     },
     score: {
         color: ACCENT_COLOR,
-        fontFamily: FONT_SUB
+        fontFamily: FONT_BOLD
     },
     headerText: {
       fontWeight: 'bold',
