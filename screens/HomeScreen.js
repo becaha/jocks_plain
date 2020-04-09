@@ -30,7 +30,7 @@ const currentWeek = {
         date: 'Mar 23 - Mar 28',
         allChecked: false,
         tasks: [
-            {task:'1000 Touches', checked: false},
+            {task:'1500 Touches', checked: false},
             {task: '3 Miles', checked: false}]
     };
 const teamSchool = 'BYU';

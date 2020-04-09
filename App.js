@@ -19,9 +19,9 @@ import {
     DARK_GRAY,
     LIGHT_GRAY,
     LIGHT_NEUTRAL,
-    LIGHTER_COLOR,
+    LIGHTER_COLOR, LIGHTER_GRAY,
     MAIN_COLOR,
-    MEDIUM_GRAY
+    MEDIUM_GRAY, MEDIUM_GRAY_1
 } from "./assets/styles/COLORS";
 import {FONT_BOLD, FONT_MAIN, FONT_SUB, SCREEN_HEIGHT, SCREEN_WIDTH} from "./assets/styles/NUMBERS";
 import {TouchableWithoutFeedback} from "react-native-web";
@@ -75,7 +75,7 @@ export class Main extends React.Component{
     getSignIn() {
             return (
                 <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={87} enabled>
-                    <View style={styles.titleView}>
+                    <View style={[styles.titleView]}>
                         <Text style={[styles.title, {color: ACCENT_COLOR}]}>Jocks</Text>
                     </View>
                    <View style={styles.signInView}>
@@ -104,7 +104,7 @@ export class Main extends React.Component{
                             <TouchableWithoutFeedback onPress={(event) => this.setSignedIn()}>
                                 <View style={styles.button}>
                                     <Text style={styles.buttonText}>
-                                        Sign In
+                                        Sign in
                                     </Text>
                                 </View>
                             </TouchableWithoutFeedback>
@@ -161,7 +161,7 @@ export class Main extends React.Component{
             else if (this.state.signIn) {
                 return (
                     <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
-                        <View style={[styles.screen, {backgroundColor: '#fff'}]}>
+                        <View style={[styles.screen, {backgroundColor: LIGHTER_GRAY}]}>
                             {this.getSignIn()}
                         </View>
                     </TouchableWithoutFeedback>
@@ -170,28 +170,30 @@ export class Main extends React.Component{
             else {
                 return (
                     <View style={styles.container}>
-                        <View style={[styles.screen, {backgroundColor: '#fff'}]}>
-                            <View>
+                        <View style={[styles.screen, {backgroundColor: ACCENT_COLOR}]}>
+                            <View style={styles.titleContainer}>
                                 <View style={styles.titleView}>
-                                    <Text style={[styles.title, {color: ACCENT_COLOR}]}>Jocks</Text>
+                                    <Text style={[styles.title, {color: '#fff'}]}>Jocks</Text>
                                 </View>
                                 <View style={styles.subHeadingView}>
-                                    <Text style={styles.subHeading}>
-                                        For Communication Off The Field
+                                    <Text style={[styles.subHeading]}>
+                                        For communication off the field.
                                     </Text>
                                 </View>
-                                <View style={styles.buttonContainer}>
+                            </View>
+                                <View style={[styles.buttonContainer, {position: 'relative',
+                                    top: 150}]}>
                                     <TouchableWithoutFeedback onPress={(event) => this.setSignIn()}>
                                         <View>
-                                            <View style={[styles.button, {alignSelf: 'center', backgroundColor: ACCENT_COLOR}]}>
-                                                <Text style={[styles.buttonText, {color: '#fff'}]}>
-                                                    Sign In
+                                            <View style={[styles.button, {alignSelf: 'center', backgroundColor: LIGHT_GRAY, borderColor: MEDIUM_GRAY, borderWidth: 1,
+                                                            width: SCREEN_WIDTH - 100}]}>
+                                                <Text style={[styles.buttonText, {color: '#000'}]}>
+                                                    Sign in
                                                 </Text>
                                             </View>
                                         </View>
                                     </TouchableWithoutFeedback>
                                 </View>
-                            </View>
                         </View>
                     </View>
                 );
@@ -212,7 +214,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         height: SCREEN_HEIGHT,
         display: 'flex',
-        justifyContent: 'center'
+        flexDirection: 'column',
+        justifyContent: 'center',
+        // alignItems: 'center'
+    },
+    titleContainer: {
+        position: 'relative',
+        bottom: 65
     },
     titleView: {
         alignSelf: 'center',
@@ -221,18 +229,19 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 70,
         fontFamily: FONT_MAIN,
-        color: ACCENT_COLOR
+        color: MEDIUM_GRAY
     },
     subHeadingView: {
         alignSelf: 'center',
-        width: SCREEN_WIDTH,
+        // width: SCREEN_WIDTH,
         // margin: 20,
         // backgroundColor: LIGHT_GRAY,
         padding: 16,
     },
     subHeading: {
-        fontSize: 20,
-        fontFamily: FONT_MAIN,
+        fontSize: 18,
+        fontFamily: FONT_BOLD,
+        fontWeight: 'bold',
         textAlign: 'center',
         // color: DARK_GRAY
     },
@@ -249,13 +258,15 @@ const styles = StyleSheet.create({
         padding: 16,
         paddingTop: 8,
         paddingBottom: 10,
-        marginTop: 8
+        marginTop: 8,
+
     },
     buttonContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        marginTop: 16
+        // alignSelf: 'flex-end',
+        // display: 'flex',
+        // flexDirection: 'column',
+        // justifyContent: 'center',
+        // marginTop: 16
     },
     inputText: {
         height: 40,
