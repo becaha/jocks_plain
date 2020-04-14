@@ -16,7 +16,7 @@ import { Keyboard, KeyboardAvoidingView } from 'react-native';
 
 import {
     ACCENT_COLOR,
-    DARK_GRAY,
+    DARK_GRAY, JOCKS_COLOR,
     LIGHT_GRAY,
     LIGHT_NEUTRAL,
     LIGHTER_COLOR, LIGHTER_GRAY,
@@ -170,7 +170,7 @@ export class Main extends React.Component{
             else {
                 return (
                     <View style={styles.container}>
-                        <View style={[styles.screen, {backgroundColor: ACCENT_COLOR}]}>
+                        <View style={[styles.screen, {backgroundColor: JOCKS_COLOR}]}>
                             <View style={styles.titleContainer}>
                                 <View style={styles.titleView}>
                                     <Text style={[styles.title, {color: '#fff'}]}>Jocks</Text>
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     button: {
-        backgroundColor: ACCENT_COLOR,
+        backgroundColor: JOCKS_COLOR,
         // borderColor: DARK_GRAY,
         // borderWidth: 1,
         padding: 16,
