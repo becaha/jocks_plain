@@ -23,6 +23,7 @@ import Constants from "expo-constants";
 import { Button } from 'react-native-material-ui';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
+import {TouchableWithoutFeedback} from "react-native-web";
 
 
 const announcements = ['Practice Cancelled March 30', 'Regionals at USU April 17-18', 'Team Banquet March 30'];
@@ -66,8 +67,8 @@ export class HomeScreen extends React.Component {
         });
     }
 
-    onReport() {
-
+    onNavigate(screen) {
+            this.props.navigation.navigate(screen);
     }
 
       render() {
@@ -94,19 +95,36 @@ export class HomeScreen extends React.Component {
                                     {this.getAnnouncements()}
                                 </View>
                             </View>
-                            <View style={[styles.cardBody, styles.cardBodySecond]}>
+                            <View style={[styles.cardBody]}>
                                 <View style={[styles.rowCol]}>
                                     <View style={[styles.row, styles.rowEnd]}>
                                         <Text style={[styles.heading, styles.homeHeading, styles.paddedV4]}>
                                             This Week's Tasks
                                         </Text>
-                                        {/*<Touchable style={styles.lightButton} onPress={() => this.onReport()}>*/}
-                                        {/*    <Text style={styles.lightButtonText}>Report</Text>*/}
-                                        {/*</Touchable>*/}
+                                        <TouchableWithoutFeedback onPress={() => this.onNavigate('Report')}>
+                                            <View style={styles.lightButton} >
+                                                <Text style={styles.lightButtonText}>Report</Text>
+                                            </View>
+                                        </TouchableWithoutFeedback>
                                     </View>
                                     {this.getWeekTasks()}
                                 </View>
                             </View>
+                            {/*<View style={[styles.cardBody, styles.cardBodySecond]}>*/}
+                            {/*    <View style={[styles.rowCol]}>*/}
+                            {/*        <View style={[styles.row, styles.rowEnd]}>*/}
+                            {/*            <Text style={[styles.heading, styles.homeHeading, styles.paddedV4]}>*/}
+                            {/*                This Week's Games*/}
+                            {/*            </Text>*/}
+                            {/*            <TouchableWithoutFeedback onPress={() => this.onNavigate('Schedule')}>*/}
+                            {/*                <View style={styles.lightButton} >*/}
+                            {/*                    <Text style={styles.lightButtonText}>Schedule</Text>*/}
+                            {/*                </View>*/}
+                            {/*            </TouchableWithoutFeedback>*/}
+                            {/*        </View>*/}
+                            {/*        /!*{this.getWeekGames()}*!/*/}
+                            {/*    </View>*/}
+                            {/*</View>*/}
                         </View>
                     </ScrollView>
                 </View>
@@ -232,10 +250,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1
     },
     lightButton: {
-        backgroundColor: '#fff'
+        backgroundColor: ACCENT_COLOR
     },
     lightButtonText: {
-        color: MAIN_COLOR,
+        color: '#fff',
         textAlign: 'center',
         fontWeight: 'bold',
         padding: 8,

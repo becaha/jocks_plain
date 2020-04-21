@@ -25,6 +25,19 @@ import {
 } from "./assets/styles/COLORS";
 import {FONT_BOLD, FONT_MAIN, FONT_SUB, SCREEN_HEIGHT, SCREEN_WIDTH} from "./assets/styles/NUMBERS";
 import {TouchableWithoutFeedback} from "react-native-web";
+import { useNavigation } from '@react-navigation/native';
+
+
+import { YellowBox } from 'react-native';
+import _ from 'lodash';
+
+YellowBox.ignoreWarnings(['componentWillReceiveProps']);
+const _console = _.clone(console);
+console.warn = message => {
+    if (message.indexOf('componentWillReceiveProps') <= -1) {
+        _console.warn(message);
+    }
+};
 
 const Tab = createBottomTabNavigator();
 
@@ -233,9 +246,6 @@ const styles = StyleSheet.create({
     },
     subHeadingView: {
         alignSelf: 'center',
-        // width: SCREEN_WIDTH,
-        // margin: 20,
-        // backgroundColor: LIGHT_GRAY,
         padding: 16,
     },
     subHeading: {
@@ -243,7 +253,6 @@ const styles = StyleSheet.create({
         fontFamily: FONT_BOLD,
         fontWeight: 'bold',
         textAlign: 'center',
-        // color: DARK_GRAY
     },
     buttonText: {
         fontFamily: FONT_BOLD,
@@ -253,8 +262,6 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: JOCKS_COLOR,
-        // borderColor: DARK_GRAY,
-        // borderWidth: 1,
         padding: 16,
         paddingTop: 8,
         paddingBottom: 10,

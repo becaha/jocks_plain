@@ -11,21 +11,34 @@ import {
 } from "../assets/styles/COLORS";
 import {FONT_BOLD, FONT_MAIN, FONT_SUB, SCREEN_HEIGHT, SCROLL_SCREEN_HEIGHT} from "../assets/styles/NUMBERS";
 import {styles} from "./ScheduleScreen";
+import Tooltip from 'react-native-walkthrough-tooltip';
+import TouchableHighlight from "react-native-web/src/exports/TouchableHighlight";
+import {TouchableWithoutFeedback} from "react-native-web";
 
 
-const statTypes = ['Opp', 'S', 'G', 'TO', 'TA', 'GB', 'F', 'FP'];
+
+const statTypes = [
+    {short: 'Opp', long: 'Opponent', longVisible: false},
+    {short: 'S', long: 'Shots', longVisible: false},
+    {short: 'G', long: 'Goals', longVisible: false},
+    {short: 'TO', long: 'Turn Overs', longVisible: false},
+    {short: 'TA', long: 'Take Aways', longVisible: false},
+    {short: 'GB', long: 'Ground Balls', longVisible: false},
+    {short: 'F', long: 'Fouls', longVisible: false},
+    {short: 'FP', long: 'Free Positions', longVisible: false}];
+
 const stats = [
-    {opponent: 'BC', stats: [0,3,4,2,1,0,0]},
-    {opponent: 'UM', stats: [2,3,6,1,1,0,3]},
-    {opponent: 'NE', stats: [0,3,4,2,1,0,0]},
-    {opponent: 'UU', stats: [0,0,0,0,0,0,0]},
-    {opponent: 'USU', stats: [0,0,0,0,0,0,0]},
-    {opponent: 'BSU', stats: [0,0,0,0,0,0,0]},
-    {opponent: 'UVU', stats: [0,0,0,0,0,0,0]},
-    {opponent: 'R', stats: [0,0,0,0,0,0,0]},
-    {opponent: 'R', stats: [0,0,0,0,0,0,0]},
-    {opponent: 'N', stats: [0,0,0,0,0,0,0]},
-    {opponent: 'N', stats: [0,0,0,0,0,0,0]},
+    {opponent: 'BC', longVisible: false, opponentLong: 'Boston College', stats: [0,3,4,2,1,0,0]},
+    {opponent: 'UM', longVisible: false, opponentLong: 'University of Michigan', stats: [2,3,6,1,1,0,3]},
+    {opponent: 'NE', longVisible: false, opponentLong: 'North Eastern University', stats: [0,3,4,2,1,0,0]},
+    {opponent: 'UU', longVisible: false, opponentLong: 'University of Utah', stats: ['-','-','-','-','-','-','-']},
+    {opponent: 'USU', longVisible: false, opponentLong: 'Utah State University', stats: ['-','-','-','-','-','-','-']},
+    {opponent: 'BSU', longVisible: false, opponentLong: 'Boise State University', stats: ['-','-','-','-','-','-','-']},
+    {opponent: 'UVU', longVisible: false, opponentLong: 'Utah Valley University', stats: ['-','-','-','-','-','-','-']},
+    {opponent: 'R', longVisible: false, opponentLong: '', stats: ['-','-','-','-','-','-','-']},
+    {opponent: 'R', longVisible: false, opponentLong: '', stats: ['-','-','-','-','-','-','-']},
+    {opponent: 'N', longVisible: false, opponentLong: '', stats: ['-','-','-','-','-','-','-']},
+    {opponent: 'N', longVisible: false, opponentLong: '', stats: ['-','-','-','-','-','-','-']},
     ];
 
 const player = {
@@ -42,6 +55,7 @@ export class StatsScreen extends React.Component {
         this.stats = stats;
         this.statTypes = statTypes;
         this.player = player;
+        this.state = {toolTipVisible: false};
     }
 
     getHeaderRow(row) {
@@ -52,12 +66,40 @@ export class StatsScreen extends React.Component {
             }
             return (
                 <View key={index} style={styles}>
-                    <Text style={[stats_styles.cellText, stats_styles.cellTitle]}>
-                        {cell}
-                    </Text>
+                    <Tooltip
+                        animated={true}
+                        //(Optional) When true, tooltip will animate in/out when showing/hiding
+                        arrowSize={{ width: 0, height: 0 }}
+                        //(Optional) Dimensions of arrow bubble pointing to the highlighted element
+                        backgroundColor="rgba(0,0,0)"
+                        //(Optional) Color of the fullscreen background beneath the tooltip.
+                        isVisible={cell.longVisible}
+                        //(Must) When true, tooltip is displayed
+                        content={<Text>{cell.long}</Text>}
+                        //(Must) This is the view displayed in the tooltip
+                        placement="top"
+                        //(Must) top, bottom, left, right, auto.
+                        onClose={() => this.toggleTooltip(cell)}
+                        // //(Optional) Callback fired when the user taps the tooltip
+                    >
+                        <TouchableWithoutFeedback
+                            onPress={() => this.toggleTooltip(cell)}
+                        >
+                            <View style={stats_styles.clickable}>
+                                <Text style={[stats_styles.cellText, stats_styles.cellTitle]}>
+                                    {cell.short}
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </Tooltip>
                 </View>
             );
         });
+    }
+
+    toggleTooltip(row) {
+        row.longVisible = !row.longVisible;
+        this.setState({ toolTipVisible: true });
     }
 
     getRowCells(row) {
@@ -77,9 +119,33 @@ export class StatsScreen extends React.Component {
         return (
             <View style={stats_styles.row}>
                 <View style={[stats_styles.cell]}>
-                    <Text style={[stats_styles.cellText, stats_styles.cellTitle, stats_styles.rowTitle]}>
-                        {row.opponent}
-                    </Text>
+                    <Tooltip
+                        animated={true}
+                        //(Optional) When true, tooltip will animate in/out when showing/hiding
+                        arrowSize={{ width: 0, height: 0 }}
+                        //(Optional) Dimensions of arrow bubble pointing to the highlighted element
+                        backgroundColor="rgba(0,0,0)"
+                        //(Optional) Color of the fullscreen background beneath the tooltip.
+                        isVisible={row.longVisible}
+                        //(Must) When true, tooltip is displayed
+                        content={<Text>{row.opponentLong}</Text>}
+                        //(Must) This is the view displayed in the tooltip
+                        placement="top"
+                        //(Must) top, bottom, left, right, auto.
+                        onClose={() => this.toggleTooltip(row)}
+                        // //(Optional) Callback fired when the user taps the tooltip
+                    >
+                        <TouchableWithoutFeedback
+                            onPress={() => this.toggleTooltip(row)}
+                        >
+                            <View style={stats_styles.clickable}>
+                                <Text style={[stats_styles.cellText, stats_styles.cellTitle, stats_styles.rowTitle, {backgroundColor: '#fff'}]}>
+                                    {row.opponent}
+                                </Text>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </Tooltip>
+
                 </View>
                 {stats}
             </View>
@@ -183,7 +249,8 @@ const stats_styles = StyleSheet.create({
         paddingLeft: 8,
         paddingRight: 8,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        height: 45
     },
     cell: {
         width: 40,
@@ -241,5 +308,9 @@ const stats_styles = StyleSheet.create({
         paddingLeft: 32,
         paddingBottom: 8,
         backgroundColor: '#fff'
+    },
+    clickable: {
+        // width: 44,
+        // height: 44
     }
 });
